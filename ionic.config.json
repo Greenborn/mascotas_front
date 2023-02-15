@@ -1,0 +1,7 @@
+{
+  "name": "masco_front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
