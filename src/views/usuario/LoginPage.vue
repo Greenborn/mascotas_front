@@ -26,7 +26,7 @@
 
                             <ion-row>
                                 <ion-col><ion-button expand="full">Registrarse</ion-button></ion-col>
-                                <ion-col><ion-button expand="full">Ingresar</ion-button></ion-col>
+                                <ion-col><ion-button expand="full" @click="login">Ingresar</ion-button></ion-col>
                             </ion-row>
                         </ion-grid>
                     </ion-card-content>
@@ -39,5 +39,12 @@
 
 <script setup>
 import { IonCol, IonGrid, IonRow, IonImg, IonCard, IonCardContent, IonCardHeader  } from '@ionic/vue';
-import { IonButton } from '@ionic/vue';
+import { IonButton, IonInput } from '@ionic/vue';
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function login(){
+    router.replace('home')
+}
 </script>
