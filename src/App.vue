@@ -1,9 +1,9 @@
 <template>
-  <CargandoPage />
+  <LoginPage />
 </template>
 
 <script setup>
-import CargandoPage from './views/dashboard/CargandoPage'
+import LoginPage from './views/usuario/LoginPage'
 </script>
 
 <style scoped>
