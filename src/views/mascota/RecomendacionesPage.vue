@@ -1,5 +1,5 @@
 <template>
-    Notificaciones
+    Recomendaciones
 </template>
 
 <script setup>
