@@ -62,9 +62,9 @@
                                     </ion-row>
 
                                     <ion-row>
-                                        <ion-col><ion-button expand="full">Perdí mi mascota</ion-button></ion-col>
-                                        <ion-col><ion-button expand="full">Descargar QR</ion-button></ion-col>
-                                        <ion-col><ion-button expand="full">Editar</ion-button></ion-col>
+                                        <ion-col><ion-button expand="full" @click="perdi_mi_mascota">Perdí mi mascota</ion-button></ion-col>
+                                        <ion-col><ion-button expand="full" @click="descargar_qr">Descargar QR</ion-button></ion-col>
+                                        <ion-col><ion-button expand="full" @click="editar">Editar</ion-button></ion-col>
                                     </ion-row>
                                 </ion-grid>
                             </ion-card-content>
@@ -81,6 +81,21 @@
 
 <script setup>
 import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime, IonButtons } from '@ionic/vue';
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const p = { nombre: 'Pepa', imagen: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.n2KtIeDnS3hs7SI1gzfsfgHaJ4%26pid%3DApi&f=1&ipt=f3906d13af26932f11ef11c78f349a0d5c0ad45b227b6bad3e7b80568f8f635d&ipo=images' }
+
+function descargar_qr(){
+    router.replace('/descargarQR')
+}
+
+function perdi_mi_mascota(){
+    router.replace('/PerdiMiMascota')
+}
+
+function editar(){
+    alert('Funcionalidad no Implementada')
+}
 </script>

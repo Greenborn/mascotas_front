@@ -50,6 +50,10 @@ const routes = [
     path: '/perfilMascota',
     component: () => import ('../views/mascota/PerfilMascota.vue')
   },
+  {
+    path: '/descargarQR',
+    component: () => import ('../views/mascota/DescargarQR.vue')
+  },
 
   {
     path: '/Salir',
