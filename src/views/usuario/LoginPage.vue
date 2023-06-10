@@ -3,6 +3,7 @@
         <ion-grid>
             <ion-row class="ion-justify-content-center ion-align-items-center vh-100">
                 <ion-col size="auto">
+                    
                     <ion-card>
                         <ion-card-header>
                             <ion-img src="assets/icon/icon.png" alt="Logo APP PET QR"></ion-img>
