@@ -45,6 +45,12 @@ const routes = [
     path: '/TerminosYCondiciones',
     component: () => import ('../views/dashboard/TerminosCondiciones.vue')
   },
+
+  {
+    path: '/perfilMascota',
+    component: () => import ('../views/mascota/PerfilMascota.vue')
+  },
+
   {
     path: '/Salir',
     component: () => import ('../views/usuario/LogOut.vue')

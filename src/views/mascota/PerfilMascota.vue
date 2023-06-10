@@ -1,6 +1,86 @@
 <template>
-    Perfil Mascota
+    <ion-grid>
+        <ion-row class="ion-justify-content-center ion-align-items-center">
+            <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
+
+                <ion-row>
+                    <ion-col size-xs="12" size-md="6">
+                        <ion-card>
+                            <ion-card-header>
+                                <ion-row class="ion-justify-content-center ion-align-items-center">
+                                    <ion-col  size="auto">
+                                        <img :src="p.imagen" class="img-mascota" alt="Imagen Mascota" />
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col><ion-button expand="full">Agregar / Quitar Foto</ion-button></ion-col>
+                                </ion-row>
+                            </ion-card-header>
+
+                            <ion-card-content>
+                                <ion-grid>
+                                    <ion-row>
+                                        <ion-col><h2><b>{{ p.nombre }}</b></h2></ion-col>
+                                    </ion-row>
+
+                                </ion-grid>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+
+                    <ion-col size-xs="12" size-md="6">
+                        <ion-card>
+                            <ion-card-header>
+                                <ion-row>
+                                    <ion-col>
+                                        <h2>Información General</h2>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-card-header>
+
+                            <ion-card-content>
+                                <ion-grid>
+                                    
+                                    <ion-row>
+                                        <ion-col><ion-input label="Nombre" placeholder="Nombre"></ion-input></ion-col>
+                                    </ion-row>
+
+                                    <ion-row>
+                                        <ion-col><ion-textarea label="Descripción" placeholder="Descripción"></ion-textarea></ion-col>
+                                    </ion-row>
+
+                                    <ion-row>
+                                        <ion-col><ion-input label="Raza" placeholder="Raza"></ion-input></ion-col>
+                                    </ion-row>
+
+                                    <ion-row>
+                                        <ion-col><ion-input label="Sexo" placeholder="Sexo"></ion-input></ion-col>
+                                    </ion-row>
+
+                                    <ion-row>
+                                        <ion-col><ion-datetime label="Fecha de Nacimiento" placeholder="Fecha de Nacimiento"></ion-datetime></ion-col>
+                                    </ion-row>
+
+                                    <ion-row>
+                                        <ion-col><ion-button expand="full">Perdí mi mascota</ion-button></ion-col>
+                                        <ion-col><ion-button expand="full">Descargar QR</ion-button></ion-col>
+                                        <ion-col><ion-button expand="full">Editar</ion-button></ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-card-content>
+                        </ion-card>
+
+                    </ion-col>
+                </ion-row>
+                
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </template>
 
 <script setup>
+import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime, IonButtons } from '@ionic/vue';
+
+const p = { nombre: 'Pepa', imagen: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.n2KtIeDnS3hs7SI1gzfsfgHaJ4%26pid%3DApi&f=1&ipt=f3906d13af26932f11ef11c78f349a0d5c0ad45b227b6bad3e7b80568f8f635d&ipo=images' }
 </script>

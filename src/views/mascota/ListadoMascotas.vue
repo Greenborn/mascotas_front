@@ -1,6 +1,6 @@
 <template>
     <ion-grid>
-        <ion-row>
+        <ion-row class="ion-justify-content-center ion-align-items-center">
             <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
 
                 <ion-row>
@@ -8,7 +8,12 @@
 
                         <ion-card>
                             <ion-card-header>
-                                <ion-img :src="p.imagen" alt="Imagen Mascota"></ion-img>
+                                <ion-row class="ion-justify-content-center ion-align-items-center">
+                                    <ion-col  size="auto">
+                                        <img :src="p.imagen" class="img-mascota" alt="Imagen Mascota" />
+                                    </ion-col>
+                                </ion-row>
+                                
                             </ion-card-header>
 
                             <ion-card-content>
@@ -17,9 +22,8 @@
                                         <ion-col><h2><b>{{ p.nombre }}</b></h2></ion-col>
                                     </ion-row>
 
-
                                     <ion-row>
-                                        <ion-col><ion-button expand="full">Perfil</ion-button></ion-col>
+                                        <ion-col><ion-button expand="full" @click="ir_a_perfil">Perfil</ion-button></ion-col>
                                     </ion-row>
                                 </ion-grid>
                             </ion-card-content>
@@ -35,10 +39,17 @@
 </template>
 
 <script setup>
-import { IonCol, IonGrid, IonRow } from '@ionic/vue';
+import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton } from '@ionic/vue';
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const listado = [
     { nombre: 'Pepa', imagen: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.n2KtIeDnS3hs7SI1gzfsfgHaJ4%26pid%3DApi&f=1&ipt=f3906d13af26932f11ef11c78f349a0d5c0ad45b227b6bad3e7b80568f8f635d&ipo=images' },
     { nombre: 'Pequeño Trump', imagen: 'https://i0.hippopx.com/photos/155/472/56/rottweiler-dog-dog-lying-preview.jpg' },
 ]
+
+function ir_a_perfil(){
+    router.replace('/perfilMascota')
+}
 </script>

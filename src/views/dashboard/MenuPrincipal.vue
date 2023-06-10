@@ -24,7 +24,7 @@
 <script setup>
 import { ref } from  'vue';
 import { IonIcon, IonMenuToggle, IonItem, IonLabel, IonList } from '@ionic/vue';
-import { IonButtons, IonContent, IonHeader, IonMenu, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonContent, IonHeader, IonMenu, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import { personOutline, bugOutline, informationOutline, alertCircle, flag, mailOutline, documentOutline, logOutOutline, helpCircleOutline } from 'ionicons/icons';
 const selectedIndex = ref()
 
