@@ -11,7 +11,7 @@
         </ion-toolbar>
         </ion-header>
 
-        <ion-content class="ion-padding">
+        <ion-content class="ion-padding def-fondo">
           <router-view></router-view>
         </ion-content>
     </ion-page>

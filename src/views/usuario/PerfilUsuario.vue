@@ -87,7 +87,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const p = { nombre: 'Maria Elena Fuseneco', imagen: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.eldiario24.com%2Fd24ar%2Ffotos%2Fuploads%2Feditorial%2F2014%2F08%2F04%2Fimagenes%2F5206_maria_elena_fuseneco.jpg&f=1&nofb=1&ipt=c01ead2fd350516af97f50ba5c1512fb1a7b83ad76f86e3349478586cdff2464&ipo=images' }
+const p = { nombre: 'Flia. Tonnini', imagen: 'assets/test/person.jpeg' }
 
 function editar(){
     alert('Funcionalidad no Implementada')

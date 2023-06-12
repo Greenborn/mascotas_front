@@ -2,7 +2,7 @@
     <ion-menu content-id="main-content">
         <ion-header>
         <ion-toolbar>
-            <ion-title>Animalia</ion-title>
+            <ion-title>Pet Land Tdl</ion-title>
         </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">

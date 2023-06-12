@@ -45,8 +45,9 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const listado = [
-    { nombre: 'Pepa', imagen: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.n2KtIeDnS3hs7SI1gzfsfgHaJ4%26pid%3DApi&f=1&ipt=f3906d13af26932f11ef11c78f349a0d5c0ad45b227b6bad3e7b80568f8f635d&ipo=images' },
-    { nombre: 'Pequeño Trump', imagen: 'https://i0.hippopx.com/photos/155/472/56/rottweiler-dog-dog-lying-preview.jpg' },
+    { nombre: 'Pepa', imagen: 'assets/test/g3.jpeg' },
+    { nombre: 'Max', imagen: 'assets/test/p3.jpeg' },
+    { nombre: 'Capitan Beto', imagen: 'assets/test/p2.jpeg' },
 ]
 
 function ir_a_perfil(){

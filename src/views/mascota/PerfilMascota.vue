@@ -85,7 +85,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const p = { nombre: 'Pepa', imagen: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.n2KtIeDnS3hs7SI1gzfsfgHaJ4%26pid%3DApi&f=1&ipt=f3906d13af26932f11ef11c78f349a0d5c0ad45b227b6bad3e7b80568f8f635d&ipo=images' }
+const p = { nombre: 'Pepa', imagen: 'assets/test/g3.jpeg' }
 
 function descargar_qr(){
     router.replace('/descargarQR')
