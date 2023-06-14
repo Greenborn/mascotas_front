@@ -53,7 +53,6 @@
     </ion-grid>
     
 </template>
-<ion-icon name=""></ion-icon>
 <script setup>
 import QrcodeVue from 'qrcode.vue'
 import { ref } from 'vue'
