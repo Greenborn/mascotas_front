@@ -4,6 +4,22 @@
             <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
 
                 <ion-row>
+                    <ion-col size-xs="12">
+                        <ion-card>
+                            
+                            <ion-card-content>
+                                <ion-grid>
+                                    <ion-row>
+                                        <ion-col><ion-button @click="perdi_mi_mascota"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon> Reportar Extravío</ion-button></ion-col>
+                                        <ion-col><ion-button @click="descargar_qr"><ion-icon slot="icon-only" :icon="qrCodeOutline"></ion-icon> Descargar QR</ion-button></ion-col>
+                                        <ion-col><ion-button @click="editar"><ion-icon slot="icon-only" :icon="createOutline"></ion-icon> Editar</ion-button></ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-card-content>
+                        </ion-card>
+
+                    </ion-col>
+
                     <ion-col size-xs="12" size-md="6">
                         <ion-card>
                             <ion-card-header>
@@ -60,12 +76,6 @@
                                     <ion-row>
                                         <ion-col><ion-datetime label="Fecha de Nacimiento" placeholder="Fecha de Nacimiento"></ion-datetime></ion-col>
                                     </ion-row>
-
-                                    <ion-row>
-                                        <ion-col><ion-button expand="full" @click="perdi_mi_mascota">Perdí mi mascota</ion-button></ion-col>
-                                        <ion-col><ion-button expand="full" @click="descargar_qr">Descargar QR</ion-button></ion-col>
-                                        <ion-col><ion-button expand="full" @click="editar">Editar</ion-button></ion-col>
-                                    </ion-row>
                                 </ion-grid>
                             </ion-card-content>
                         </ion-card>
@@ -78,11 +88,11 @@
         </ion-row>
     </ion-grid>
 </template>
-
 <script setup>
-import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime, IonButtons } from '@ionic/vue';
+import { IonCol, IonGrid, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime, IonButtons } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
+import { createOutline, alertCircleOutline, qrCodeOutline } from 'ionicons/icons';
 import { perfil_mascota_seleccionado } from '../../store/app'
 
 const informacion_perfil = ref( perfil_mascota_seleccionado.value )
