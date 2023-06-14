@@ -41,16 +41,23 @@
 <script setup>
 import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton } from '@ionic/vue';
 import { useRouter } from 'vue-router'
+import { onMounted, ref } from 'vue'
+import { get_all } from '../../api/mascotas'
 
 const router = useRouter()
 
-const listado = [
-    { nombre: 'Pepa', imagen: 'assets/test/g3.jpeg' },
-    { nombre: 'Max', imagen: 'assets/test/p3.jpeg' },
-    { nombre: 'Capitan Beto', imagen: 'assets/test/p2.jpeg' },
-]
+const listado = ref()
 
 function ir_a_perfil(){
     router.replace('/perfilMascota')
 }
+
+onMounted(async ()=>{
+    let res = undefined
+    res = await get_all()
+    if (res?.stat){
+        listado.value = res.data
+        console.log(res)
+    } 
+})
 </script>
