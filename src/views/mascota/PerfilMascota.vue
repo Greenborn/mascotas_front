@@ -9,10 +9,10 @@
                             
                             <ion-card-content>
                                 <ion-grid>
-                                    <ion-row>
-                                        <ion-col><ion-button @click="perdi_mi_mascota"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon> Reportar Extravío</ion-button></ion-col>
-                                        <ion-col><ion-button @click="descargar_qr"><ion-icon slot="icon-only" :icon="qrCodeOutline"></ion-icon> Descargar QR</ion-button></ion-col>
-                                        <ion-col><ion-button @click="editar"><ion-icon slot="icon-only" :icon="createOutline"></ion-icon> Editar</ion-button></ion-col>
+                                    <ion-row class="ion-justify-content-center ion-align-items-center">
+                                        <ion-col size="auto"><ion-button @click="perdi_mi_mascota"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Reportar Extravío</ion-button></ion-col>
+                                        <ion-col size="auto"><ion-button @click="descargar_qr"><ion-icon slot="icon-only" :icon="qrCodeOutline"></ion-icon>&nbsp; Descargar QR</ion-button></ion-col>
+                                        <ion-col size="auto"><ion-button @click="editar"><ion-icon slot="icon-only" :icon="createOutline"></ion-icon>&nbsp; Editar</ion-button></ion-col>
                                     </ion-row>
                                 </ion-grid>
                             </ion-card-content>
