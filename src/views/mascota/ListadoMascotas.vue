@@ -4,7 +4,7 @@
             <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
 
                 <ion-row>
-                    <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="6" size-xl="4" v-for="p in listado" :key="p">
+                    <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="6" size-xl="4" v-for="(p, index) in listado" :key="p">
 
                         <ion-card>
                             <ion-card-header>
@@ -23,7 +23,7 @@
                                     </ion-row>
 
                                     <ion-row>
-                                        <ion-col><ion-button expand="full" @click="ir_a_perfil">Perfil</ion-button></ion-col>
+                                        <ion-col><ion-button expand="full" @click="ir_a_perfil(index)">Perfil</ion-button></ion-col>
                                     </ion-row>
                                 </ion-grid>
                             </ion-card-content>
@@ -43,12 +43,14 @@ import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonBut
 import { useRouter } from 'vue-router'
 import { onMounted, ref } from 'vue'
 import { get_all } from '../../api/mascotas'
+import { perfil_mascota_seleccionado } from '../../store/app'
 
 const router = useRouter()
 
 const listado = ref()
 
-function ir_a_perfil(){
+function ir_a_perfil(i){
+    perfil_mascota_seleccionado.value = listado.value[i]
     router.replace('/perfilMascota')
 }
 

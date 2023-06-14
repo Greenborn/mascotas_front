@@ -9,7 +9,7 @@
                             <ion-card-header>
                                 <ion-row class="ion-justify-content-center ion-align-items-center">
                                     <ion-col  size="auto">
-                                        <img :src="p.imagen" class="img-mascota" alt="Imagen Mascota" />
+                                        <img :src="informacion_perfil.imagen" class="img-mascota" alt="Imagen Mascota" />
                                     </ion-col>
                                 </ion-row>
                                 <ion-row>
@@ -20,7 +20,7 @@
                             <ion-card-content>
                                 <ion-grid>
                                     <ion-row>
-                                        <ion-col><h2><b>{{ p.nombre }}</b></h2></ion-col>
+                                        <ion-col><h2><b>{{ informacion_perfil.nombre }}</b></h2></ion-col>
                                     </ion-row>
 
                                 </ion-grid>
@@ -82,10 +82,11 @@
 <script setup>
 import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime, IonButtons } from '@ionic/vue';
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { perfil_mascota_seleccionado } from '../../store/app'
 
+const informacion_perfil = ref( perfil_mascota_seleccionado.value )
 const router = useRouter()
-
-const p = { nombre: 'Pepa', imagen: 'assets/test/g3.jpeg' }
 
 function descargar_qr(){
     router.replace('/descargarQR')
