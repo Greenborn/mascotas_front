@@ -106,7 +106,7 @@ async function registro_p2(){
         present_loading.value = false
         router.replace('registro_2')
     } else {
-        alert(present_loading.value.text)
+        alert(result_registro.value.text)
         present_loading.value = false
     }
 }
