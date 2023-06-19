@@ -82,6 +82,7 @@ async function do_login(){
         router.replace('home')
     } else {
         present_loading.value = false
+        alert(res_login.value.text)
     }
 }
 
