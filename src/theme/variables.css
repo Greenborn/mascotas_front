@@ -257,3 +257,7 @@ http://ionicframework.com/docs/theming/ */
   background: #ffd8dd !important;
   background-color: #ffd8dd !important;
 }
+
+.ion-page{
+  overflow: auto;
+}

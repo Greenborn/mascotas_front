@@ -1,7 +1,7 @@
 <template>
     <ion-page id="main-content" class="def-fondo">
         <ion-grid>
-            <ion-row class="ion-justify-content-center ion-align-items-center vh-100">
+            <ion-row class="ion-justify-content-center ion-align-items-center vh-100" >
                 <ion-col size="auto">
                     
                     <ion-card>
