@@ -4,7 +4,64 @@ import { ruta_actual } from '../store/app'
 export const ROUTES_CONFIG:any = {
   '/login': { 
     fullscreen: true,
-  }
+    titulo: "Ingresar"
+  },
+  '/registro': {
+    fullscreen: true,
+    titulo: "Registrarse"
+  },
+  '/registro_2': {
+    fullscreen: true,
+    titulo: "Verificacar Cuenta"
+  },
+  '/home': {
+    fullscreen: false,
+    titulo: "Home"
+  },
+  '/Cuenta': {
+    fullscreen: false,
+    titulo: "Cuenta"
+  },
+  '/MisMascotas': {
+    fullscreen: false,
+    titulo: "Mis Mascotas"
+  },
+  '/Recomendaciones': {
+    fullscreen: false,
+    titulo: "Recomendaciones"
+  },
+  '/PerdiMiMascota': {
+    fullscreen: false,
+    titulo: "Reportar Extravío"
+  },
+  '/ReportarAparicion': {
+    fullscreen: false,
+    titulo: "Reportar Aparición"
+  },
+  '/PedidosyNotificaciones': {
+    fullscreen: false,
+    titulo: "Pedidos y Notificaciones"
+  },
+  '/faq': {
+    fullscreen: false,
+    titulo: "Preguntas Frecuentes"
+  },
+  '/TerminosYCondiciones': {
+    fullscreen: false,
+    titulo: "Términos y Condiciones"
+  },
+  '/perfilMascota': {
+    fullscreen: false,
+    titulo: "Perfil de Mascota"
+  },
+  '/descargarQR': {
+    fullscreen: false,
+    titulo: "Ver QR"
+  },
+  '/Salir': {
+    fullscreen: false,
+    titulo: "Salir"
+  },
 }
 
 const routes = [
@@ -85,8 +142,6 @@ await routerBeforeEach(router)
 
 export async function routerBeforeEach( router:any ){
   router.beforeEach(async (to:any, from:any, next:any) => {
-    
-    console.log(ROUTES_CONFIG[to.path], from, next)
     ruta_actual.value = { router: to, cfg: ROUTES_CONFIG[to.path] }
     next()
   })

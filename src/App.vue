@@ -7,12 +7,11 @@
               <ion-buttons slot="start">
               <ion-menu-button></ion-menu-button>
               </ion-buttons>
-              <ion-title>Home</ion-title>
+              <ion-title>{{ ruta_actual?.cfg?.titulo }}</ion-title>
           </ion-toolbar>
         </ion-header>
 
         <ion-content class="ion-padding def-fondo">
-          {{ ruta_actual.cfg }}
           <router-view></router-view>
         </ion-content>
     </ion-page>
