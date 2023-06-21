@@ -1,4 +1,11 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
+import { ruta_actual } from '../store/app'
+
+export const ROUTES_CONFIG:any = {
+  '/login': { 
+    fullscreen: true,
+  }
+}
 
 const routes = [
   {
@@ -6,7 +13,7 @@ const routes = [
     redirect: '/login'
   },
   {
-    path: '/login',
+    path: '/login', 
     component: () => import ('../views/usuario/LoginPage.vue')
   },
   {
@@ -69,9 +76,18 @@ const routes = [
   },
 ]
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
-export default router
+await routerBeforeEach(router)
+
+export async function routerBeforeEach( router:any ){
+  router.beforeEach(async (to:any, from:any, next:any) => {
+    
+    console.log(ROUTES_CONFIG[to.path], from, next)
+    ruta_actual.value = { router: to, cfg: ROUTES_CONFIG[to.path] }
+    next()
+  })
+}

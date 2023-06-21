@@ -3,15 +3,16 @@
 
   <ion-page id="main-content">
         <ion-header>
-        <ion-toolbar>
-            <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-            </ion-buttons>
-            <ion-title>Home</ion-title>
-        </ion-toolbar>
+          <ion-toolbar v-if="!ruta_actual?.cfg?.fullscreen">
+              <ion-buttons slot="start">
+              <ion-menu-button></ion-menu-button>
+              </ion-buttons>
+              <ion-title>Home</ion-title>
+          </ion-toolbar>
         </ion-header>
 
         <ion-content class="ion-padding def-fondo">
+          {{ ruta_actual.cfg }}
           <router-view></router-view>
         </ion-content>
     </ion-page>
@@ -21,5 +22,5 @@
 <script setup>
 import { IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonMenuButton } from '@ionic/vue';
 import MenuPrincipal from './views/dashboard/MenuPrincipal.vue'
-
+import { ruta_actual } from './store/app'
 </script>
