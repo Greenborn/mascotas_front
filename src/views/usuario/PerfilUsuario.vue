@@ -1,4 +1,5 @@
 <template>
+<ion-page id="main-content" class="def-fondo">
     <ion-grid>
         <ion-row class="ion-justify-content-center ion-align-items-center">
             <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
@@ -79,10 +80,11 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+</ion-page>
 </template>
 
 <script setup>
-import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime, IonButtons } from '@ionic/vue';
+import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime, IonButtons } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

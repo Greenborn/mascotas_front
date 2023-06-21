@@ -1,4 +1,5 @@
 <template>
+<ion-page id="main-content" class="def-fondo">
     <ion-grid>
         <ion-row class="ion-justify-content-center ion-align-items-center">
             <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
@@ -87,9 +88,10 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+</ion-page>
 </template>
 <script setup>
-import { IonCol, IonGrid, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime, IonButtons } from '@ionic/vue';
+import { IonCol, IonGrid, IonRow, IonPage, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime, IonButtons } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { createOutline, alertCircleOutline, qrCodeOutline } from 'ionicons/icons';

@@ -1,4 +1,5 @@
 <template>
+<ion-page id="main-content" class="def-fondo">
     <ion-grid>
         <ion-row>
             <ion-col>
@@ -6,11 +7,12 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+</ion-page>
 </template>
 
 <script setup>
 import { ref } from  'vue';
-import { IonCol, IonGrid, IonRow } from '@ionic/vue';
+import { IonCol, IonGrid, IonPage, IonRow } from '@ionic/vue';
 
 import ListadoMascotas from '../mascota/ListadoMascotas.vue'
 </script>

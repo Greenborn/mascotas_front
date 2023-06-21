@@ -1,4 +1,5 @@
 <template>
+<ion-page id="main-content" class="def-fondo">
     <ion-grid>
         <ion-row class="ion-justify-content-center ion-align-items-center">
             <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
@@ -7,7 +8,7 @@
                         <ion-card-header>
                             <ion-row>
                                 <ion-col>
-                                    <h2>Reportar extravío de: {{ perfil_mascota_seleccionado.nombre }}</h2>
+                                    <h2>Reportar extravío de: {{ perfil_mascota_seleccionado?.nombre }}</h2>
                                 </ion-col>
                             </ion-row>
                         </ion-card-header>
@@ -47,10 +48,11 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+</ion-page>
 </template>
 
 <script setup>
-import { IonCol, IonGrid, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonButtons } from '@ionic/vue';
+import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonButtons } from '@ionic/vue';
 import { perfil_mascota_seleccionado } from '../../store/app'
 import { alertCircleOutline } from 'ionicons/icons';
 
