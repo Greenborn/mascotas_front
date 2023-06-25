@@ -1,7 +1,7 @@
 <template>
     <ion-grid>
-        <ion-row class="ion-justify-content-center ion-align-items-center">
-            <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
+        <ion-row>
+            <ion-col>
 
                 <ion-row>
                     <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="6" size-xl="4" v-for="(p, index) in listado" :key="p">
