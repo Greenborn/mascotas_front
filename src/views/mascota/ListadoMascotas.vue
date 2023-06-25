@@ -42,16 +42,20 @@
 import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 import { onMounted, ref } from 'vue'
-import { get_all } from '../../api/mascotas'
+import { get_all, get_one } from '../../api/mascotas'
 import { perfil_mascota_seleccionado } from '../../store/app'
 
+const perfil_obtenido = ref()
 const router = useRouter()
 
 const listado = ref()
 
-function ir_a_perfil(i){
-    perfil_mascota_seleccionado.value = listado.value[i]
-    router.replace('/perfilMascota')
+async function ir_a_perfil(i){
+    perfil_obtenido.value = await get_one( listado.value[i].id )
+    if (perfil_obtenido.value.stat) {
+        perfil_mascota_seleccionado.value = perfil_obtenido.value.data
+        router.replace('/perfilMascota')
+    }
 }
 
 onMounted(async ()=>{

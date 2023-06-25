@@ -3,7 +3,7 @@
     <ion-grid>
         <ion-row class="ion-justify-content-center ion-align-items-center">
             <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
-
+{{ informacion_perfil }}
                 <ion-row>
                     <ion-col size-xs="12">
                         <ion-card>
@@ -26,7 +26,7 @@
                             <ion-card-header>
                                 <ion-row class="ion-justify-content-center ion-align-items-center">
                                     <ion-col  size="auto">
-                                        <img :src="informacion_perfil?.imagen" class="img-mascota" alt="Imagen Mascota" />
+                                        <VistaImagenes :listado_imagenes="informacion_perfil?.imagenes"></VistaImagenes>
                                     </ion-col>
                                 </ion-row>
                                 <ion-row>
@@ -82,6 +82,8 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { createOutline, alertCircleOutline, qrCodeOutline } from 'ionicons/icons';
 import { perfil_mascota_seleccionado } from '../../store/app'
+
+import VistaImagenes from '../dashboard/VistaImagenes'
 
 const informacion_perfil = ref( perfil_mascota_seleccionado.value )
 const router = useRouter()
