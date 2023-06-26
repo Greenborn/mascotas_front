@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import { IonCol, IonPage, IonGrid, IonRow, IonImg, IonCard, IonCardContent, IonCardHeader  } from '@ionic/vue';
+import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader  } from '@ionic/vue';
 import { IonButton, IonInput } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 

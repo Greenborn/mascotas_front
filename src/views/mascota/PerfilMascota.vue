@@ -3,7 +3,7 @@
     <ion-grid>
         <ion-row class="ion-justify-content-center ion-align-items-center">
             <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
-{{ informacion_perfil }}
+
                 <ion-row>
                     <ion-col size-xs="12">
                         <ion-card>
@@ -29,8 +29,8 @@
                                         <VistaImagenes :listado_imagenes="informacion_perfil?.imagenes"></VistaImagenes>
                                     </ion-col>
                                 </ion-row>
-                                <ion-row>
-                                    <ion-col><ion-button expand="full">Agregar / Quitar Foto</ion-button></ion-col>
+                                <ion-row class="ion-justify-content-center ion-align-items-center">
+                                    <ion-col size="auto"><ion-button expand="full"><ion-icon slot="icon-only" :icon="addCircleOutline"></ion-icon>&nbsp; Agregar Foto</ion-button></ion-col>
                                 </ion-row>
                             </ion-card-header>
 
@@ -74,13 +74,14 @@
         </ion-row>
     </ion-grid>
 </ion-page>
+
 </template>
 <script setup>
 import { IonItem, IonList } from '@ionic/vue' 
 import { IonCol, IonGrid, IonRow, IonPage, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime, IonButtons } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-import { createOutline, alertCircleOutline, qrCodeOutline } from 'ionicons/icons';
+import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } from 'ionicons/icons';
 import { perfil_mascota_seleccionado } from '../../store/app'
 
 import VistaImagenes from '../dashboard/VistaImagenes'

@@ -84,7 +84,7 @@
 </template>
 
 <script setup>
-import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime, IonButtons } from '@ionic/vue';
+import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
