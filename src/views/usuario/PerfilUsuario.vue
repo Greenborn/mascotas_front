@@ -43,27 +43,16 @@
                                 <ion-grid>
                                     
                                     <ion-row>
-                                        <ion-col><ion-input label="Nombre" placeholder="Nombre"></ion-input></ion-col>
-                                    </ion-row>
-
-                                    <ion-row>
-                                        <ion-col><ion-textarea label="Descripción" placeholder="Descripción"></ion-textarea></ion-col>
-                                    </ion-row>
-
-                                    <ion-row>
-                                        <ion-col><ion-input label="E-Mail" placeholder="E-Mail"></ion-input></ion-col>
-                                    </ion-row>
-
-                                    <ion-row>
-                                        <ion-col><ion-datetime label="Fecha de Nacimiento" placeholder="Fecha de Nacimiento"></ion-datetime></ion-col>
-                                    </ion-row>
-
-                                    <ion-row>
-                                        <ion-col><ion-input label="Contraseña" type="password" value="password"></ion-input></ion-col>
-                                    </ion-row>
-
-                                    <ion-row>
-                                        <ion-col><ion-input label="Repetir Contraseña" type="password" value="password"></ion-input></ion-col>
+                                        <ion-col>
+                                            <ion-list>
+                                                <ion-item><ion-input v-model="modelo.nombre" label="Nombre" placeholder="Nombre"></ion-input></ion-item>
+                                                <ion-item><ion-textarea v-model="modelo.descripcion" label="Descripción" placeholder="Descripción"></ion-textarea></ion-item>
+                                                <ion-item><ion-input   v-model="modelo.email" label="E-Mail" placeholder="E-Mail"></ion-input></ion-item>
+                                                <ion-item><ion-datetime  v-model="modelo.fecha_nacimiento" label="Fecha de Nacimiento" placeholder="Fecha de Nacimiento"></ion-datetime></ion-item>
+                                                <ion-item><ion-input  v-model="modelo.pass"  label="Contraseña" type="password" value="password"></ion-input></ion-item>
+                                                <ion-item><ion-input v-model="modelo.rep_pass"  label="Repetir Contraseña" type="password" value="password"></ion-input></ion-item>
+                                            </ion-list>    
+                                        </ion-col>
                                     </ion-row>
 
                                     <ion-row>
@@ -84,12 +73,18 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { IonItem, IonList } from '@ionic/vue';
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
 const p = { nombre: 'Flia. Tonnini', imagen: 'assets/test/person.jpeg' }
+
+const modelo = ref({
+    nombre: '', descripcion: '', email: '', fecha_nacimiento: '', pass: '', rep_pass: ''
+})
 
 function editar(){
     alert('Funcionalidad no Implementada')
