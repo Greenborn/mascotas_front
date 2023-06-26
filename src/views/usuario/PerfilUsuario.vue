@@ -76,21 +76,41 @@
 import { ref } from 'vue'
 import { IonItem, IonList } from '@ionic/vue';
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime } from '@ionic/vue';
-import { useRouter } from 'vue-router'
 import { user_data } from '../../store/app'
-
-const router = useRouter()
+import { actualizar_datos } from '../../api/usuario'
 
 const p = { nombre: 'Flia. Tonnini', imagen: 'assets/test/person.jpeg' }
 
 const modelo = ref(inicializa_modelo())
 
 function inicializa_modelo(){
-    return {...user_data.value, pass: '', rep_pass: ''
+    return {...user_data.value, pass: '********', rep_pass: ''
     }
 }
 
-function editar(){
-    alert('Funcionalidad no Implementada')
+async function editar(){
+    if (modelo.value.nombre == ''){
+        alert('Se espera nombre de usuario')
+        return false
+    }
+
+    if (modelo.value.email == ''){
+        alert('Se espera e-mail')
+        return false
+    }
+
+    if (modelo.value.fecha_nacimiento == ''){
+        alert('Se espera fecha de nacimiento')
+        return false
+    }
+
+    let res_actualiza = undefined
+    res_actualiza = await actualizar_datos( modelo.value )
+    if (res_actualiza.stat){
+        alert('Funcionalidad no Implementada')
+    } else {
+        alert('Ocurrio un error')
+    }
+    
 }
 </script>
