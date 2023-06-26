@@ -2,12 +2,11 @@
 <ion-page id="main-content" class="def-fondo">
     <ion-grid>
         <ion-row class="ion-justify-content-center ion-align-items-center">
+            
             <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
-
                 <ion-row>
-                    <ion-col size-xs="12">
+                    <ion-col size-xs="12" v-if="informacion_perfil != null">
                         <ion-card>
-                            
                             <ion-card-content>
                                 <ion-grid>
                                     <ion-row class="ion-justify-content-center ion-align-items-center">
@@ -20,7 +19,9 @@
                         </ion-card>
 
                     </ion-col>
-
+                </ion-row>
+                
+                <ion-row>
                     <ion-col size-xs="12" size-md="6">
                         <ion-card>
                             <ion-card-header>
@@ -68,8 +69,22 @@
 
                     </ion-col>
                 </ion-row>
-                
 
+                <ion-row>
+                    <ion-col>
+                        <ion-card>
+                            <ion-card-content>
+                                <ion-grid>
+                                    <ion-row class="ion-justify-content-center ion-align-items-center">
+                                        <ion-col size="auto"><ion-button @click="guardar">
+                                            <ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Guardar</ion-button>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -83,6 +98,7 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } from 'ionicons/icons';
 import { perfil_mascota_seleccionado } from '../../store/app'
+import { agregar } from '../../api/mascotas'
 
 import VistaImagenes from '../dashboard/VistaImagenes'
 
@@ -103,5 +119,30 @@ function perdi_mi_mascota(){
 
 function editar(){
     alert('Funcionalidad no Implementada')
+}
+
+async function guardar(){
+    if (modelo.value.nombre == ''){
+        alert('Es necesario completar el nombre')
+        return false
+    }
+
+    if (modelo.value.descripcion == ''){
+        alert('Es necesario completar la descripción')
+        return false
+    }
+
+    if (modelo.value.fecha_nacimiento == ''){
+        alert('Es necesario completar la fecha de nacimiento')
+        return false
+    }
+
+    let respuesta_agregar = undefined
+    respuesta_agregar = await agregar( modelo.value )
+    if (respuesta_agregar.stat) {
+        alert(respuesta_agregar.text)
+    } else {
+        alert('Ocurrio un error')
+    }
 }
 </script>
