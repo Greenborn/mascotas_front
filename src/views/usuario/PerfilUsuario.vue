@@ -77,14 +77,18 @@ import { ref } from 'vue'
 import { IonItem, IonList } from '@ionic/vue';
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime } from '@ionic/vue';
 import { useRouter } from 'vue-router'
+import { user_data } from '../../store/app'
 
 const router = useRouter()
 
 const p = { nombre: 'Flia. Tonnini', imagen: 'assets/test/person.jpeg' }
 
-const modelo = ref({
-    nombre: '', descripcion: '', email: '', fecha_nacimiento: '', pass: '', rep_pass: ''
-})
+const modelo = ref(inicializa_modelo())
+
+function inicializa_modelo(){
+    return {...user_data.value, pass: '', rep_pass: ''
+    }
+}
 
 function editar(){
     alert('Funcionalidad no Implementada')

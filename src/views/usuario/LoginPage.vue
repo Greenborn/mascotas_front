@@ -50,6 +50,7 @@ import { IonCol, IonPage, IonGrid, IonRow, IonImg, IonCard, IonCardContent, IonC
 import { IonButton, IonInput } from '@ionic/vue';
 import { IonLoading } from '@ionic/vue';
 import { useRouter } from 'vue-router'
+import { user_data } from '../../store/app'
 
 import { login } from '../../api/usuario'
 
@@ -79,6 +80,7 @@ async function do_login(){
     res_login.value = await login(modelo.value)
     if (res_login.value?.stat) {
         present_loading.value = false
+        user_data.value = res_login.value?.data
         router.replace('home')
     } else {
         present_loading.value = false
