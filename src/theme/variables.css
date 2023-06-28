@@ -261,3 +261,7 @@ http://ionicframework.com/docs/theming/ */
 .ion-page{
   overflow: auto;
 }
+
+ion-grid{
+  width: 100%;
+}
