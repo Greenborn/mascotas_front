@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from '@ionic/vue-router';
+import { createRouter, createWebHashHistory } from '@ionic/vue-router';
 import { ruta_actual } from '../store/app'
 
 export const ROUTES_CONFIG:any = {
@@ -58,6 +58,10 @@ export const ROUTES_CONFIG:any = {
     fullscreen: false,
     titulo: "Ver QR"
   },
+  '/qr': {
+    fullscreen: true,
+    titulo: "Perfil Mascota"
+  },
   '/Salir': {
     fullscreen: false,
     titulo: "Salir"
@@ -72,6 +76,10 @@ const routes = [
   {
     path: '/login', 
     component: () => import ('../views/usuario/LoginPage.vue')
+  },
+  {
+    path: '/qr', 
+    component: () => import ('../views/mascota/QrPublico.vue')
   },
   {
     path: '/registro',
@@ -134,7 +142,7 @@ const routes = [
 ]
 
 export const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
 

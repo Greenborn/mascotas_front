@@ -98,7 +98,7 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } from 'ionicons/icons';
 import { perfil_mascota_seleccionado } from '../../store/app'
-import { agregar } from '../../api/mascotas'
+import { agregar, agregar_foto, eliminar_foto } from '../../api/mascotas'
 
 import VistaImagenes from '../dashboard/VistaImagenes'
 

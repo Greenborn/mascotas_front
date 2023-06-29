@@ -32,7 +32,7 @@
                                 <ion-grid>
                                     <ion-row class="ion-justify-content-center ion-align-items-center">
                                         <ion-col  size="auto">
-                                            <qrcode-vue id="qr_svg" :value="'https://petappqr.com/QR?i='+perfil_mascota_seleccionado.id" :size="400" level="L" />
+                                            <qrcode-vue id="qr_svg" :value="'https://petappqr.com/#/qr?i='+perfil_mascota_seleccionado.id" :size="400" level="L" />
                                         </ion-col>
                                     </ion-row>
                                     <ion-row class="ion-justify-content-center ion-align-items-center">
