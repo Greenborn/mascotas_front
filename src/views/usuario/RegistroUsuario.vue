@@ -25,9 +25,7 @@
                                     <ion-item>
                                         <ion-textarea label="Descripción" placeholder="Descripción"  v-model="modelo.descripcion"></ion-textarea>
                                     </ion-item>
-                                    <ion-item>
-                                        <ion-datetime label="Fecha de Nacimiento" placeholder="Fecha de Nacimiento" v-model="modelo.fecha_nacimiento"></ion-datetime>
-                                    </ion-item>
+                                    <SelectorFecha v-model="modelo.fecha_nacimiento" />
                                     <ion-item>
                                         <ion-input label="Contraseña" type="password" value="password" v-model="modelo.pass"></ion-input>
                                     </ion-item>
@@ -58,6 +56,7 @@ import { IonButton, IonInput } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 
 import { registro } from '../../api/usuario'
+import SelectorFecha from '../../components/SelectorFecha'
 
 const router = useRouter()
 

@@ -58,12 +58,21 @@
 
                             <ion-card-content>
                                 <ion-list>
-                                    <ion-item><ion-input label="Nombre" placeholder="Nombre" v-model="modelo.nombre"></ion-input></ion-item>
-                                    <ion-item><ion-textarea label="Descripción" placeholder="Descripción" v-model="modelo.descripcion"></ion-textarea></ion-item>
-                                    <ion-item><ion-input label="Raza" placeholder="Raza" v-model="modelo.raza"></ion-input></ion-item>
-                                    <ion-item><ion-input label="Sexo" placeholder="Sexo" v-model="modelo.sexo"></ion-input></ion-item>
-                                    <ion-item><ion-datetime label="Fecha de Nacimiento" placeholder="Fecha de Nacimiento" v-model="modelo.fecha_nacimiento"></ion-datetime></ion-item>
+                                    <ion-item>
+                                        <ion-input label="Nombre" placeholder="Nombre" v-model="modelo.nombre"></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-textarea label="Descripción" placeholder="Descripción" v-model="modelo.descripcion"></ion-textarea>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-input label="Raza" placeholder="Raza" v-model="modelo.raza"></ion-input>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-input label="Sexo" placeholder="Sexo" v-model="modelo.sexo"></ion-input>
+                                    </ion-item>
                                 </ion-list>
+
+                                <SelectorFecha v-model="modelo.fecha_nacimiento" />
                             </ion-card-content>
                         </ion-card>
 
@@ -93,7 +102,8 @@
 </template>
 <script setup>
 import { IonItem, IonList } from '@ionic/vue' 
-import { IonCol, IonGrid, IonRow, IonPage, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime, IonButtons } from '@ionic/vue';
+import { IonCol, IonGrid, IonRow, IonPage, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonInput, 
+    IonTextarea, IonSelect, IonSelectOption, IonButtons } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } from 'ionicons/icons';
@@ -101,12 +111,13 @@ import { perfil_mascota_seleccionado } from '../../store/app'
 import { agregar, agregar_foto, eliminar_foto } from '../../api/mascotas'
 
 import VistaImagenes from '../dashboard/VistaImagenes'
+import SelectorFecha from '../../components/SelectorFecha'
 
 const informacion_perfil = ref( perfil_mascota_seleccionado.value )
 const router = useRouter()
 
 const modelo = ref({
-    nombre: '', descripcion: '', raza: '', sexo: '', fecha_nacimiento: ''
+    nombre: '', descripcion: '', raza: '', sexo: '', fecha_nacimiento: { anio:'', mes:'', dia:'' }
 })
 
 function descargar_qr(){
