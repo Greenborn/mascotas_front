@@ -14,3 +14,9 @@ export const MESES = [
     { v:11, t:'Diciembre' }
 ]
 
+export const FORMATOS_IMAGEN = [
+    { type: "image/png" },
+    { type: "image/jpeg" }
+]
+
+export const MAX_IMAGE_SIZE = 1024 * 1024 * 3

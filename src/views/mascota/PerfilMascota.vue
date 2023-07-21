@@ -122,7 +122,8 @@ import { agregar, agregar_foto, eliminar_foto } from '../../api/mascotas'
 
 import VistaImagenes from '../dashboard/VistaImagenes'
 import SelectorFecha from '../../components/SelectorFecha'
-import { BtnUploadConfig }from '../../components/ElementoUIGenerico'
+import { BtnUploadConfig } from '../../components/ElementoUIGenerico'
+import { FORMATOS_IMAGEN, MAX_IMAGE_SIZE } from '../../const'
 
 const btn_subir_foto = ref(new BtnUploadConfig({ 
             class:'ml-1 mr-1',  label: 'Subir Foto', 
@@ -134,7 +135,7 @@ const informacion_perfil = ref( perfil_mascota_seleccionado.value )
 const router = useRouter()
 
 const modelo = ref({
-    nombre: '', descripcion: '', raza: '', sexo: '', fecha_nacimiento: { anio:'', mes:'', dia:'' }
+    nombre: '', descripcion: '', raza: '', sexo: '', fecha_nacimiento: { anio:'', mes:'', dia:'' }, imagenes: []
 })
 
 function descargar_qr(){
@@ -142,8 +143,38 @@ function descargar_qr(){
 }
 
 function subir_foto_change( evnt ){
-    alert('Funcionalidad No Implementada')
-    console.log( evnt )
+    const files = evnt?.target?.files
+
+    if (files != undefined)
+        for (let i=0; i < files.length; i++){
+            let encontrado = false
+            
+            if (files[i].size > MAX_IMAGE_SIZE){
+                alert('Tamaño de imagen excedido, el máximo es: '+ Math.round(MAX_IMAGE_SIZE/(1024*1024)) + ' MB')
+                return false
+            }
+
+            for (let j=0; j < FORMATOS_IMAGEN.length; j++)
+                if (files[i].type == FORMATOS_IMAGEN[j].type) {
+                    encontrado = true
+                    break
+                }
+            
+            if (!encontrado) {
+                alert('Formato de imagen no soportado!')
+                return false
+            }
+
+            const filereader = new FileReader();
+            filereader.readAsDataURL(files[i]);
+            filereader.onload = function (evt) {
+                modelo.value.imagenes.push( {...files[i], 'base64': evt.target.result } )
+            }
+            
+        }
+
+    console.log(modelo.value.imagenes)
+    
 }
 
 function perdi_mi_mascota(){
