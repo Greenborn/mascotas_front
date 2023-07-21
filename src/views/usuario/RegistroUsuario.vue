@@ -50,8 +50,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import { IonItem, IonList } from '@ionic/vue' 
-import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonTextarea, IonDatetime } from '@ionic/vue';
+import { IonItem, IonList, IonLoading } from '@ionic/vue' 
+import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonTextarea } from '@ionic/vue';
 import { IonButton, IonInput } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 
@@ -61,7 +61,7 @@ import SelectorFecha from '../../components/SelectorFecha'
 const router = useRouter()
 
 const modelo = ref({
-    nombre: '', email: '', descripcion: '', fecha_nacimiento: '', pass: '', repetir_pass: ''
+    nombre: '', email: '', descripcion: '', fecha_nacimiento: { anio: undefined, mes: undefined, dia: undefined }, pass: '', repetir_pass: ''
 })
 
 const present_loading = ref(false)

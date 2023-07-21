@@ -2,7 +2,7 @@
     <ion-page id="main-content" class="def-fondo">
         <ion-grid>
             <ion-row class="ion-justify-content-center ion-align-items-center vh-100" >
-                <ion-col size="auto">
+                <ion-col size-xs="12" size-md="6" size-lg="3" size-sm="12">
                     
                     <ion-card>
                         <ion-card-header>

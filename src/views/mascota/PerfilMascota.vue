@@ -31,7 +31,17 @@
                                     </ion-col>
                                 </ion-row>
                                 <ion-row class="ion-justify-content-center ion-align-items-center">
-                                    <ion-col size="auto"><ion-button expand="full"><ion-icon slot="icon-only" :icon="addCircleOutline"></ion-icon>&nbsp; Agregar Foto</ion-button></ion-col>
+                                    <ion-col size="auto">
+                                        <component 
+                                            :is="btn_subir_foto.componente"
+                                            v-if="btn_subir_foto.__visible()"
+                                            :icon="btn_subir_foto.icon" iconPos="right" 
+                                            :label="btn_subir_foto._label()"
+                                            :disabled="btn_subir_foto._disabled()"
+                                            :class="btn_subir_foto.class"
+                                            :control_params = "btn_subir_foto.control_params"
+                                            @click="btn_subir_foto._click"></component>                          
+                                        </ion-col>
                                 </ion-row>
                             </ion-card-header>
 
@@ -112,7 +122,14 @@ import { agregar, agregar_foto, eliminar_foto } from '../../api/mascotas'
 
 import VistaImagenes from '../dashboard/VistaImagenes'
 import SelectorFecha from '../../components/SelectorFecha'
+import { BtnUploadConfig }from '../../components/ElementoUIGenerico'
 
+const btn_subir_foto = ref(new BtnUploadConfig({ 
+            class:'ml-1 mr-1',  label: 'Subir Foto', 
+            _disabled: () => { return false },
+            permisos: [], 
+            control_params: { id: "subir_foto", _change: subir_foto_change }
+        }))
 const informacion_perfil = ref( perfil_mascota_seleccionado.value )
 const router = useRouter()
 
@@ -122,6 +139,11 @@ const modelo = ref({
 
 function descargar_qr(){
     router.replace('/descargarQR')
+}
+
+function subir_foto_change( evnt ){
+    alert('Funcionalidad No Implementada')
+    console.log( evnt )
 }
 
 function perdi_mi_mascota(){
