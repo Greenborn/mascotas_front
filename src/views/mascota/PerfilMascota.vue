@@ -168,7 +168,7 @@ function subir_foto_change( evnt ){
             const filereader = new FileReader();
             filereader.readAsDataURL(files[i]);
             filereader.onload = function (evt) {
-                modelo.value.imagenes.push( {...files[i], 'base64': evt.target.result } )
+                modelo.value.imagenes.push( { 'name': files[i].name, 'type':files[i].type, 'base64': evt.target.result } )
             }
             
         }

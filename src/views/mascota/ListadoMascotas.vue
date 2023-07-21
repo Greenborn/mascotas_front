@@ -10,7 +10,7 @@
                             <ion-card-header>
                                 <ion-row class="ion-justify-content-center ion-align-items-center">
                                     <ion-col  size="auto">
-                                        <img :src="p.imagen" class="img-mascota" alt="Imagen Mascota" />
+                                        <img :src="getUrlImagen(p.imagen)" class="img-mascota" alt="Imagen Mascota" />
                                     </ion-col>
                                 </ion-row>
                                 
@@ -57,6 +57,8 @@ async function ir_a_perfil(i){
         router.replace('/perfilMascota')
     }
 }
+
+function getUrlImagen( img ){ return process.env.VUE_APP_BACKEND_URL+img }
 
 onMounted(async ()=>{
     let res = undefined
