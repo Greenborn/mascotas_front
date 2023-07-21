@@ -2,7 +2,7 @@
     <ion-grid>
         <ion-row>
             <ion-col v-for="imagen in listado_imagenes" :key="imagen">
-                <img  :src="getUrlImagen( imagen )" class="img-mascota" alt="Imagen Mascotar" />
+                <img  :src="getUrlImagen( imagen )" class="img-mascota" alt="Imagen Mascota" />
 
                 <ion-button expand="full" @click="eliminar_foto">
                     <ion-icon slot="icon-only" :icon="trashOutline"></ion-icon>
@@ -44,7 +44,10 @@ const alertButtons = ref([
     },
 ]);
 
-function getUrlImagen( img ){ return process.env.VUE_APP_BACKEND_URL+img.url }
+function getUrlImagen( img ){ 
+    if (img?.prev) return img.url
+    return process.env.VUE_APP_BACKEND_URL+img.url 
+}
 
 function eliminar_foto(){
     alert_modal.value = true
