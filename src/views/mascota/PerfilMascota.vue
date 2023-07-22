@@ -12,7 +12,14 @@
                                     <ion-row class="ion-justify-content-center ion-align-items-center">
                                         <ion-col size="auto"><ion-button @click="perdi_mi_mascota"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Reportar Extravío</ion-button></ion-col>
                                         <ion-col size="auto"><ion-button @click="descargar_qr"><ion-icon slot="icon-only" :icon="qrCodeOutline"></ion-icon>&nbsp; Descargar QR</ion-button></ion-col>
-                                        <ion-col size="auto"><ion-button @click="editar_click"><ion-icon slot="icon-only" :icon="createOutline"></ion-icon>&nbsp; Editar</ion-button></ion-col>
+                                        <ion-col size="auto">
+                                            <ion-list>
+                                                <ion-item>
+                                                    <ion-toggle :checked="edicion_habilitada" @ionChange="editar_click" labelPlacement="start" ></ion-toggle>
+                                                    Editar
+                                                </ion-item>
+                                            </ion-list>
+                                        </ion-col>
                                     </ion-row>
                                 </ion-grid>
                             </ion-card-content>
@@ -131,7 +138,7 @@
 <script setup>
 import { IonItem, IonList } from '@ionic/vue' 
 import { IonCol, IonGrid, IonRow, IonPage, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonInput, 
-    IonTextarea, IonSelect, IonSelectOption, IonButtons } from '@ionic/vue';
+    IonTextarea, IonSelect, IonSelectOption, IonButtons, IonToggle } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } from 'ionicons/icons';
@@ -241,7 +248,7 @@ function validar(){
 }
 
 function adecuar_formato_salida( modelo ){
-    modelo = { ...modelo }
+    modelo = JSON.parse(JSON.stringify(modelo))
     //se quitan del envio las fotos que no se subieron actualmente
     for (let c=0; c < modelo.imagenes.length; c++) {
         if (!modelo.imagenes[c]?.prev)
