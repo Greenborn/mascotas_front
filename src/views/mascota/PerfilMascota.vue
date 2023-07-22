@@ -12,7 +12,7 @@
                                     <ion-row class="ion-justify-content-center ion-align-items-center">
                                         <ion-col size="auto"><ion-button @click="perdi_mi_mascota"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Reportar Extravío</ion-button></ion-col>
                                         <ion-col size="auto"><ion-button @click="descargar_qr"><ion-icon slot="icon-only" :icon="qrCodeOutline"></ion-icon>&nbsp; Descargar QR</ion-button></ion-col>
-                                        <ion-col size="auto"><ion-button @click="editar"><ion-icon slot="icon-only" :icon="createOutline"></ion-icon>&nbsp; Editar</ion-button></ion-col>
+                                        <ion-col size="auto"><ion-button @click="editar_click"><ion-icon slot="icon-only" :icon="createOutline"></ion-icon>&nbsp; Editar</ion-button></ion-col>
                                     </ion-row>
                                 </ion-grid>
                             </ion-card-content>
@@ -70,27 +70,44 @@
                             <ion-card-content>
                                 <ion-list>
                                     <ion-item>
-                                        <ion-input label="Nombre" placeholder="Nombre" v-model="modelo.nombre"></ion-input>
+                                        <ion-input 
+                                            :disabled="!edicion_habilitada" v-model="modelo.nombre"
+                                            label="Nombre" placeholder="Nombre" />
                                     </ion-item>
                                     <ion-item>
-                                        <ion-textarea label="Descripción" placeholder="Descripción" v-model="modelo.descripcion"></ion-textarea>
+                                        <ion-textarea 
+                                            :disabled="!edicion_habilitada"  v-model="modelo.descripcion"
+                                            label="Descripción" placeholder="Descripción" />
                                     </ion-item>
                                     <ion-item>
-                                        <ion-input label="Raza" placeholder="Raza" v-model="modelo.raza"></ion-input>
+                                        <ion-select 
+                                            :disabled="!edicion_habilitada" v-model="modelo.tipo"
+                                            label="Es un" placeholder="Es un">
+                                            <ion-select-option v-for="tipo in tipos_animales" :key="tipo" :value="tipo.v">{{tipo.t}}</ion-select-option>
+                                        </ion-select>
                                     </ion-item>
                                     <ion-item>
-                                        <ion-input label="Sexo" placeholder="Sexo" v-model="modelo.sexo"></ion-input>
+                                        <ion-input 
+                                            :disabled="!edicion_habilitada" v-model="modelo.raza"
+                                            label="Raza" placeholder="Raza" />
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-select 
+                                            :disabled="!edicion_habilitada" v-model="modelo.sexo"
+                                            label="Sexo" placeholder="Sexo">
+                                            <ion-select-option v-for="sex in sexo_animal" :key="sex" :value="sex.v">{{sex.t}}</ion-select-option>
+                                        </ion-select>
                                     </ion-item>
                                 </ion-list>
 
-                                <SelectorFecha v-model="modelo.fecha_nacimiento" />
+                                <SelectorFecha :disabled="!edicion_habilitada" v-model="modelo.fecha_nacimiento" />
                             </ion-card-content>
                         </ion-card>
 
                     </ion-col>
                 </ion-row>
 
-                <ion-row>
+                <ion-row v-if="edicion_habilitada">
                     <ion-col>
                         <ion-card>
                             <ion-card-content>
@@ -119,7 +136,7 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } from 'ionicons/icons';
 import { perfil_mascota_seleccionado } from '../../store/app'
-import { agregar, agregar_foto, eliminar_foto } from '../../api/mascotas'
+import { agregar, editar, agregar_foto, eliminar_foto } from '../../api/mascotas'
 
 import VistaImagenes from '../dashboard/VistaImagenes'
 import SelectorFecha from '../../components/SelectorFecha'
@@ -136,14 +153,27 @@ const btn_subir_foto = ref(new BtnUploadConfig({
 const router = useRouter()
 
 const modelo = ref(
-    perfil_mascota_seleccionado.value ? adecuar_formato(perfil_mascota_seleccionado.value) :
+    perfil_mascota_seleccionado.value ? adecuar_formato_entrada(perfil_mascota_seleccionado.value) :
     {
-        nombre: '', descripcion: '', raza: '', sexo: '', fecha_nacimiento: { anio:'', mes:'', dia:'' }, imagenes: []
+        nombre: '', descripcion: '', raza: '', sexo: 1, tipo: 1, fecha_nacimiento: { anio:'', mes:'', dia:'' }, imagenes: []
     }
 )
+const tipos_animales = ref([
+    { v: 1, t: 'Perro' },
+    { v: 2, t: 'Gato' },
+])
 
-function adecuar_formato( modelo ){
+const sexo_animal = ref([
+    { v: 1, t: 'Hembra' },
+    { v: 2, t: 'Macho' },
+])
+
+const edicion_habilitada = ref(false)
+
+function adecuar_formato_entrada( modelo ){
     modelo.fecha_nacimiento = JSON.parse(modelo.fecha_nacimiento)
+    modelo.tipo             = Number(modelo.tipo)
+    modelo.sexo             = Number(modelo.sexo)
     return modelo
 }
 
@@ -187,11 +217,11 @@ function perdi_mi_mascota(){
     router.replace('/PerdiMiMascota')
 }
 
-function editar(){
-    alert('Funcionalidad no Implementada')
+function editar_click(){
+    edicion_habilitada.value = !edicion_habilitada.value
 }
 
-async function guardar(){
+function validar(){
     if (modelo.value.nombre == ''){
         alert('Es necesario completar el nombre')
         return false
@@ -207,10 +237,31 @@ async function guardar(){
         return false
     }
 
-    let respuesta_agregar = undefined
-    respuesta_agregar = await agregar( modelo.value )
-    if (respuesta_agregar.stat) {
-        alert(respuesta_agregar.text)
+    return true
+}
+
+function adecuar_formato_salida( modelo ){
+    modelo = { ...modelo }
+    //se quitan del envio las fotos que no se subieron actualmente
+    for (let c=0; c < modelo.imagenes.length; c++) {
+        if (!modelo.imagenes[c]?.prev)
+            modelo.imagenes.splice( c, 1 )
+    }
+    
+    return modelo
+}
+
+async function guardar(){
+    if (!validar()) return false
+
+    let respuesta_ = undefined
+    if (!perfil_mascota_seleccionado.value?.id)
+        respuesta_ = await agregar( adecuar_formato_salida( modelo.value ) )
+    else
+        respuesta_ = await editar( adecuar_formato_salida( modelo.value ) )
+
+    if (respuesta_.stat) {
+        alert(respuesta_.text)
     } else {
         alert('Ocurrio un error')
     }
