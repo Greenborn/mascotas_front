@@ -33,7 +33,7 @@ const appPages = [
   { title: 'Mis Mascotas',  url: '/MisMascotas', icon: bugOutline },
   { title: 'Recomendaciones',  url: '/Recomendaciones', icon: informationOutline  },
   { title: 'Perdí Mi Mascota',  url: '/PerdiMiMascota', icon: alertCircle  },
-  { title: 'Reportar Aparición',  url: '/ReportarAparicion', icon: flag  },
+  { title: 'Mascotas Perdidas',  url: '/MascotasPerdidas', icon: flag  },
   { title: 'Pedidos y Notificaciones',  url: '/PedidosyNotificaciones', icon: mailOutline  },
   { title: 'Ayuda y preguntas Frecuentes',  url: '/faq', icon: helpCircleOutline  },
   { title: 'Terminos y Condiciones',  url: '/TerminosYCondiciones', icon: documentOutline  },

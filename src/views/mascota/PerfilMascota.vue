@@ -10,7 +10,7 @@
                             <ion-card-content>
                                 <ion-grid>
                                     <ion-row class="ion-justify-content-center ion-align-items-center">
-                                        <ion-col size="auto"><ion-button @click="perdi_mi_mascota"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Reportar Extravío</ion-button></ion-col>
+                                        <ion-col size="auto"><ion-button @click="perdi_mi_mascota" color="danger"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Reportar Extravío</ion-button></ion-col>
                                         <ion-col size="auto"><ion-button @click="descargar_qr"><ion-icon slot="icon-only" :icon="qrCodeOutline"></ion-icon>&nbsp; Descargar QR</ion-button></ion-col>
                                         <ion-col size="auto">
                                             <ion-list>
