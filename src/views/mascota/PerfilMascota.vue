@@ -136,11 +136,16 @@ const btn_subir_foto = ref(new BtnUploadConfig({
 const router = useRouter()
 
 const modelo = ref(
-    perfil_mascota_seleccionado.value ? perfil_mascota_seleccionado.value :
+    perfil_mascota_seleccionado.value ? adecuar_formato(perfil_mascota_seleccionado.value) :
     {
         nombre: '', descripcion: '', raza: '', sexo: '', fecha_nacimiento: { anio:'', mes:'', dia:'' }, imagenes: []
     }
 )
+
+function adecuar_formato( modelo ){
+    modelo.fecha_nacimiento = JSON.parse(modelo.fecha_nacimiento)
+    return modelo
+}
 
 function descargar_qr(){
     router.replace('/descargarQR')

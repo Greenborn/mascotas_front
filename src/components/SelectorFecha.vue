@@ -53,7 +53,7 @@
 
     onMounted(async ()=>{
         modelo.value = props.modelValue
-
+        cambio_fecha()
         const anio = new Date().getFullYear()
         const a = anio - 50
         for (let i = anio; i > a; i--){
