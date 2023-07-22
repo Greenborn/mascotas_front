@@ -162,7 +162,7 @@ const router = useRouter()
 const modelo = ref(
     perfil_mascota_seleccionado.value ? adecuar_formato_entrada(perfil_mascota_seleccionado.value) :
     {
-        nombre: '', descripcion: '', raza: '', sexo: 1, tipo: 1, fecha_nacimiento: { anio:'', mes:'', dia:'' }, imagenes: []
+        nombre: '', descripcion: '', raza: '', sexo: 1, tipo: 1, fecha_nacimiento: new Date(), imagenes: []
     }
 )
 const tipos_animales = ref([
@@ -178,7 +178,6 @@ const sexo_animal = ref([
 const edicion_habilitada = ref(false)
 
 function adecuar_formato_entrada( modelo ){
-    modelo.fecha_nacimiento = JSON.parse(modelo.fecha_nacimiento)
     modelo.tipo             = Number(modelo.tipo)
     modelo.sexo             = Number(modelo.sexo)
     return modelo
@@ -249,6 +248,7 @@ function validar(){
 
 function adecuar_formato_salida( modelo ){
     modelo = JSON.parse(JSON.stringify(modelo))
+
     //se quitan del envio las fotos que no se subieron actualmente
     for (let c=0; c < modelo.imagenes.length; c++) {
         if (!modelo.imagenes[c]?.prev)

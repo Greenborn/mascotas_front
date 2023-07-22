@@ -48,11 +48,16 @@
         if (modelo.value.dia > dias)
             modelo.value.dia = dias
 
-        emit('update:modelValue', modelo.value)
+        
+        emit('update:modelValue', new Date( modelo.value.anio, modelo.value.mes, modelo.value.dia ) )
     }
 
     onMounted(async ()=>{
-        modelo.value = props.modelValue
+        if (props.modelValue) {
+            const fecha = new Date( props.modelValue )
+            modelo.value = { 'anio': fecha.getFullYear(), 'mes': fecha.getMonth(), 'dia':fecha.getDate() }
+        }
+            
         cambio_fecha()
         const anio = new Date().getFullYear()
         const a = anio - 50
