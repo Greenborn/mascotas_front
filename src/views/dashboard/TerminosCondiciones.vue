@@ -5,8 +5,8 @@
                 <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="6" >
                     <ion-card>
                         <ion-card-header>
-                            <ion-row>
-                                <ion-col>
+                            <ion-row class="ion-justify-content-center ion-align-items-center">
+                                <ion-col size="auto">
                                     <h2>Terminos y Condiciones</h2>
                                 </ion-col>
                             </ion-row>
