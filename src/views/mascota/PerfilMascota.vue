@@ -34,7 +34,7 @@
                             <ion-card-header>
                                 <ion-row class="ion-justify-content-center ion-align-items-center">
                                     <ion-col  size="auto">
-                                        <VistaImagenes :listado_imagenes="modelo?.imagenes"></VistaImagenes>
+                                        <VistaImagenes :listado_imagenes="modelo?.imagenes" @buttons_events="vista_img_buttons_events" />
                                     </ion-col>
                                 </ion-row>
 
@@ -225,6 +225,11 @@ function validar(){
     }
 
     return true
+}
+
+function vista_img_buttons_events( evnt ){
+    console.log(evnt)
+    alert('funcionalidad aun no implementada')
 }
 
 function adecuar_formato_salida( modelo ){
