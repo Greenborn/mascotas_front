@@ -81,13 +81,3 @@ onMounted(async ()=>{
     } 
 })
 </script>
-
-<style>
-.img-mascota{
-    width: 100%;
-}
-
-.cont-img-mascota{
-    overflow: hidden;
-}
-</style>

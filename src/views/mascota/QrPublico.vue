@@ -78,7 +78,7 @@ import { onMounted, ref } from 'vue'
 import { get_one } from '../../api/mascotas'
 import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } from 'ionicons/icons';
 
-import VistaImagenes from '../dashboard/VistaImagenes'
+import VistaImagenes from '../../components/VistaImagenes'
 
 const perfil_obtenido = ref( null )
 

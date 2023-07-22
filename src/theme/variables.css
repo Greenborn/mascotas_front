@@ -264,3 +264,11 @@ ion-grid{
 .w-100{
   width: 100%;
 }
+
+.img-mascota{
+  width: 100%;
+}
+
+.cont-img-mascota{
+  overflow: hidden;
+}

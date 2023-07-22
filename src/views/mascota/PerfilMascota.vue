@@ -52,15 +52,6 @@
                                     </ion-col>
                                 </ion-row>
                             </ion-card-header>
-
-                            <ion-card-content>
-                                <ion-grid>
-                                    <ion-row>
-                                        <ion-col><h2><b>{{ modelo?.nombre }}</b></h2></ion-col>
-                                    </ion-row>
-
-                                </ion-grid>
-                            </ion-card-content>
                         </ion-card>
                     </ion-col>
 
@@ -69,7 +60,7 @@
                             <ion-card-header>
                                 <ion-row>
                                     <ion-col>
-                                        <h2>Información General</h2>
+                                        <h2>Información General - {{ modelo.nombre }}</h2>
                                     </ion-col>
                                 </ion-row>
                             </ion-card-header>
@@ -135,7 +126,7 @@ import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } fr
 import { perfil_mascota_seleccionado } from '../../store/app'
 import { agregar, editar, agregar_foto, eliminar_foto } from '../../api/mascotas'
 
-import VistaImagenes from '../dashboard/VistaImagenes'
+import VistaImagenes from '../../components/VistaImagenes'
 import SelectorFecha from '../../components/SelectorFecha'
 import { BtnUploadConfig } from '../../components/ElementoUIGenerico'
 import { FORMATOS_IMAGEN, MAX_IMAGE_SIZE } from '../../const'
