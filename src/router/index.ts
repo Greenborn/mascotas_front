@@ -119,7 +119,7 @@ const routes = [
   },
   {
     path: '/MascotasPerdidas',
-    component: () => import ('../views/mascota/ListadoMascotasPerdidas.vue')
+    component: () => import ('../views/mascota/MascotasPerdidas.vue')
   },
   {
     path: '/PedidosyNotificaciones',
