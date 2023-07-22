@@ -31,8 +31,10 @@
                             <ion-card-content>
                                 <ion-grid>
                                     <ion-row class="ion-justify-content-center ion-align-items-center">
-                                        <ion-col  size="auto">
-                                            <qrcode-vue id="qr_svg" :value="'https://petappqr.com/#/qr?i='+perfil_mascota_seleccionado.id" :size="400" level="L" />
+                                        <ion-col>
+                                            <div id="cont-qr" class="w-100">
+                                                <qrcode-vue id="qr_svg" :value="'https://petappqr.com/#/qr?i='+perfil_mascota_seleccionado.id" :size="qr_def_size" level="L" />
+                                            </div>
                                         </ion-col>
                                     </ion-row>
                                     <ion-row class="ion-justify-content-center ion-align-items-center">
@@ -55,13 +57,15 @@
 </template>
 <script setup>
 import QrcodeVue from 'qrcode.vue'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { cloudDownloadOutline } from 'ionicons/icons';
 import { IonCol, IonGrid, IonPage, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonButtons } from '@ionic/vue';
 
 import { perfil_mascota_seleccionado } from '../../store/app'
 
 const canvas = ref()
+
+const qr_def_size = ref(0)
 
 function descargar_qr(){
     canvas.value   = document.querySelector("#qr_svg")
@@ -73,4 +77,10 @@ function descargar_qr(){
     enlace.click()
 }
 
+onMounted(async ()=>{
+    setTimeout(() => {
+        const elemento_cont = document.getElementById('cont-qr')
+        qr_def_size.value = elemento_cont?.scrollWidth
+    }, 200)
+})
 </script>
