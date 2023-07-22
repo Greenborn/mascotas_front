@@ -105,30 +105,20 @@
                                             <ion-select-option v-for="sex in sexo_animal" :key="sex" :value="sex.v">{{sex.t}}</ion-select-option>
                                         </ion-select>
                                     </ion-item>
+                                    
+                                    <SelectorFecha :disabled="!edicion_habilitada" v-model="modelo.fecha_nacimiento" />
+                                                                       
+                                    <ion-button @click="guardar" v-if="edicion_habilitada">
+                                        <ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Guardar</ion-button>
+                                    
                                 </ion-list>
 
-                                <SelectorFecha :disabled="!edicion_habilitada" v-model="modelo.fecha_nacimiento" />
                             </ion-card-content>
                         </ion-card>
 
                     </ion-col>
                 </ion-row>
 
-                <ion-row v-if="edicion_habilitada">
-                    <ion-col>
-                        <ion-card>
-                            <ion-card-content>
-                                <ion-grid>
-                                    <ion-row class="ion-justify-content-center ion-align-items-center">
-                                        <ion-col size="auto"><ion-button @click="guardar">
-                                            <ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Guardar</ion-button>
-                                        </ion-col>
-                                    </ion-row>
-                                </ion-grid>
-                            </ion-card-content>
-                        </ion-card>
-                    </ion-col>
-                </ion-row>
             </ion-col>
         </ion-row>
     </ion-grid>
