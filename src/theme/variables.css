@@ -239,11 +239,6 @@ http://ionicframework.com/docs/theming/ */
   min-height: 100vh;
 }
 
-.img-mascota {
-  max-height: 50vh !important;
-  width: auto !important;
-}
-
 @font-face {
   font-family: "MusticaPro-SemiBold";
   src: url("../../public/assets/MusticaPro-SemiBold.otf") format("opentype");
@@ -263,5 +258,9 @@ http://ionicframework.com/docs/theming/ */
 }
 
 ion-grid{
+  width: 100%;
+}
+
+.w-100{
   width: 100%;
 }

@@ -9,8 +9,11 @@
                         <ion-card>
                             <ion-card-header>
                                 <ion-row class="ion-justify-content-center ion-align-items-center">
-                                    <ion-col  size="auto">
-                                        <img :src="getUrlImagen(p.imagen)" class="img-mascota" alt="Imagen Mascota" />
+                                    <ion-col>
+                                        <div class="w-100 cont-img-mascota" :style="{ 'max-height': def_max_height }">
+                                            <img  :src="getUrlImagen(p.imagen)" 
+                                                class="img-mascota" alt="Imagen Mascota"  />
+                                        </div>
                                     </ion-col>
                                 </ion-row>
                                 
@@ -60,12 +63,31 @@ async function ir_a_perfil(i){
 
 function getUrlImagen( img ){ return process.env.VUE_APP_BACKEND_URL+img }
 
+const def_max_height = ref('0px')
+function getMaxHeigth(){
+    const cont_img = document.getElementsByClassName('cont-img-mascota')[0]
+    if (cont_img) return cont_img.scrollWidth + 'px'
+}
+
 onMounted(async ()=>{
     let res = undefined
     res = await get_all()
     if (res?.stat){
         listado.value = res.data
+        setTimeout(() => { //Se espera un momento a que se actualize la vista esto sera bugero si la vista tarda mas de 200 ms en actualizarse
+            def_max_height.value = getMaxHeigth()
+        }, 200);
         console.log(res)
     } 
 })
 </script>
+
+<style>
+.img-mascota{
+    width: 100%;
+}
+
+.cont-img-mascota{
+    overflow: hidden;
+}
+</style>
