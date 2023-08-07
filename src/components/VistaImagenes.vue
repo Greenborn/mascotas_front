@@ -24,9 +24,6 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-alert
-        :is-open="alert_modal" :header="text_alert"
-        :buttons="alertButtons"></ion-alert>
 </template>
 
 <script setup>
@@ -34,33 +31,13 @@ import { ref, onMounted } from 'vue'
 import { IonCol, IonGrid, IonRow, IonIcon, IonButton } from '@ionic/vue';
 import { trashOutline, starOutline } from 'ionicons/icons';
 import { IonAlert } from '@ionic/vue' 
+import { APP_alert_modal, APP_alert_ejecutar, APP_text_alert, APP_alertButtons } from '../store/app'
 
 const props = defineProps(['listado_imagenes'])
 const emit  = defineEmits(['buttons_events'])
 
 const def_size = ref('0px')
 
-const alert_modal = ref(false)
-const text_alert  =  ref('¿Confirma eliminar fotografía?')
-const alertButtons = ref([
-    {
-        text: 'Cancelar',
-        role: 'cancel',
-        handler: () => {
-            alert_modal.value = false
-        },
-    },
-    {
-        text: 'Aceptar',
-        role: 'confirm',
-        handler: () => {
-            alert_modal.value = false
-            alert_ejecutar.value()
-        },
-    },
-]);
-
-const alert_ejecutar = ref(()=>{ alert('funcionalidad aun no implementada') })
 const imagen_selected = ref()
 const FUNCIONES = {
     'confirm_eliminar': () => {
@@ -70,7 +47,6 @@ const FUNCIONES = {
         emit('buttons_events', { key: 'confirm_def_perfil', imagen: imagen_selected.value })
     },
 }
-
 
 function getMaxHeigth(){
     const cont_img = document.getElementsByClassName('cont-img-mascota')[0]
@@ -83,17 +59,17 @@ function getUrlImagen( img ){
 }
 
 function eliminar_foto( imagen ){
-    text_alert.value  = '¿Confirma eliminar fotografía?'
+    APP_text_alert.value  = '¿Confirma eliminar fotografía?'
     imagen_selected.value = imagen
-    alert_ejecutar.value = FUNCIONES['confirm_eliminar']
-    alert_modal.value = true
+    APP_alert_ejecutar.value = FUNCIONES['confirm_eliminar']
+    APP_alert_modal.value = true
 }
 
 function definir_perfil( imagen ){
-    text_alert.value  = 'La foto seleccionada se mostrará como Foto Principal en el perfil de la mascota'
+    APP_text_alert.value  = 'La foto seleccionada se mostrará como Foto Principal en el perfil de la mascota'
     imagen_selected.value = imagen
-    alert_ejecutar.value = FUNCIONES['confirm_def_perfil']
-    alert_modal.value = true
+    APP_alert_ejecutar.value = FUNCIONES['confirm_def_perfil']
+    APP_alert_modal.value = true
 }
 
 onMounted(async ()=>{

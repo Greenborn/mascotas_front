@@ -20,6 +20,7 @@
                                                 </ion-item>
                                             </ion-list>
                                         </ion-col>
+                                        <ion-col size="auto"><ion-button @click="quitar_mascota" color="danger"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp;Quitar del Listado</ion-button></ion-col>
                                     </ion-row>
                                 </ion-grid>
                             </ion-card-content>
@@ -198,6 +199,10 @@ function subir_foto_change( evnt ){
             }
             
         }
+}
+
+function quitar_mascota(){
+    alert('funcionalidad no implementada')
 }
 
 function perdi_mi_mascota(){

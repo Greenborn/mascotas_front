@@ -14,6 +14,9 @@
         <ion-content class="ion-padding def-fondo">
           <router-view></router-view>
         </ion-content>
+        <ion-alert
+          :is-open="APP_alert_modal" :header="APP_text_alert"
+          :buttons="APP_alertButtons"></ion-alert>
     </ion-page>
   
 </template>
@@ -21,5 +24,6 @@
 <script setup>
 import { IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonMenuButton } from '@ionic/vue';
 import MenuPrincipal from './views/dashboard/MenuPrincipal.vue'
-import { ruta_actual } from './store/app'
+import { ruta_actual, APP_alert_modal, APP_text_alert, APP_alertButtons } from './store/app'
+import { IonAlert } from '@ionic/vue' 
 </script>
