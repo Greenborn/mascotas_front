@@ -124,8 +124,8 @@ import { IonCol, IonGrid, IonRow, IonPage, IonCard, IonIcon, IonCardContent, Ion
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } from 'ionicons/icons';
-import { perfil_mascota_seleccionado } from '../../store/app'
-import { agregar, editar, agregar_foto, eliminar_foto } from '../../api/mascotas'
+import { perfil_mascota_seleccionado, mostrar_alerta } from '../../store/app'
+import { agregar, editar, agregar_foto, eliminar_foto, def_foto_principal  } from '../../api/mascotas'
 
 import VistaImagenes from '../../components/VistaImagenes'
 import SelectorFecha from '../../components/SelectorFecha'
@@ -177,7 +177,7 @@ function subir_foto_change( evnt ){
             let encontrado = false
             
             if (files[i].size > MAX_IMAGE_SIZE){
-                alert('Tamaño de imagen excedido, el máximo es: '+ Math.round(MAX_IMAGE_SIZE/(1024*1024)) + ' MB')
+                mostrar_alerta('Tamaño de imagen excedido, el máximo es: '+ Math.round(MAX_IMAGE_SIZE/(1024*1024)) + ' MB')
                 return false
             }
 
@@ -188,7 +188,7 @@ function subir_foto_change( evnt ){
                 }
             
             if (!encontrado) {
-                alert('Formato de imagen no soportado!')
+                mostrar_alerta('Formato de imagen no soportado!')
                 return false
             }
 
@@ -202,7 +202,7 @@ function subir_foto_change( evnt ){
 }
 
 function quitar_mascota(){
-    alert('funcionalidad no implementada')
+    mostrar_alerta('funcionalidad no implementada')
 }
 
 function perdi_mi_mascota(){
@@ -215,26 +215,39 @@ function editar_click(){
 
 function validar(){
     if (modelo.value.nombre == ''){
-        alert('Es necesario completar el nombre')
+        mostrar_alerta('Es necesario completar el nombre')
         return false
     }
 
     if (modelo.value.descripcion == ''){
-        alert('Es necesario completar la descripción')
+        mostrar_alerta('Es necesario completar la descripción')
         return false
     }
 
     if (modelo.value.fecha_nacimiento == ''){
-        alert('Es necesario completar la fecha de nacimiento')
+        mostrar_alerta('Es necesario completar la fecha de nacimiento')
         return false
     }
 
     return true
 }
 
-function vista_img_buttons_events( evnt ){
-    console.log(evnt)
-    alert('funcionalidad aun no implementada')
+async function vista_img_buttons_events( evnt ){
+    let res_deffoto = null
+
+    switch( evnt.key ){
+        case 'confirm_def_perfil':
+            res_deffoto = await def_foto_principal({ 'id_mascota': evnt?.imagen?.id_mascota, 'id_imagen': evnt?.imagen?.id })
+            if (res_deffoto.stat){
+                console.log(res_deffoto)
+            } else {
+                mostrar_alerta('Ocurrio un error')
+            }
+        break;
+        default:
+            mostrar_alerta('funcionalidad aun no implementada')
+        break;
+    }
 }
 
 function adecuar_formato_salida( modelo ){
@@ -259,9 +272,9 @@ async function guardar(){
         respuesta_ = await editar( adecuar_formato_salida( modelo.value ) )
 
     if (respuesta_.stat) {
-        alert(respuesta_.text)
+        mostrar_alerta(respuesta_.text)
     } else {
-        alert('Ocurrio un error')
+        mostrar_alerta('Ocurrio un error')
     }
 }
 </script>
