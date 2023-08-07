@@ -31,7 +31,7 @@ import { ref, onMounted } from 'vue'
 import { IonCol, IonGrid, IonRow, IonIcon, IonButton } from '@ionic/vue';
 import { trashOutline, starOutline } from 'ionicons/icons';
 import { IonAlert } from '@ionic/vue' 
-import { APP_alert_modal, APP_alert_ejecutar, APP_text_alert, APP_alertButtons } from '../store/app'
+import { mostrar_confirmacion } from '../store/app'
 
 const props = defineProps(['listado_imagenes'])
 const emit  = defineEmits(['buttons_events'])
@@ -59,17 +59,13 @@ function getUrlImagen( img ){
 }
 
 function eliminar_foto( imagen ){
-    APP_text_alert.value  = '¿Confirma eliminar fotografía?'
+    mostrar_confirmacion('¿Confirma eliminar fotografía?', FUNCIONES['confirm_eliminar'])
     imagen_selected.value = imagen
-    APP_alert_ejecutar.value = FUNCIONES['confirm_eliminar']
-    APP_alert_modal.value = true
 }
 
 function definir_perfil( imagen ){
-    APP_text_alert.value  = 'La foto seleccionada se mostrará como Foto Principal en el perfil de la mascota'
-    imagen_selected.value = imagen
-    APP_alert_ejecutar.value = FUNCIONES['confirm_def_perfil']
-    APP_alert_modal.value = true
+    mostrar_confirmacion('La foto seleccionada se mostrará como Foto Principal en el perfil de la mascota', FUNCIONES['confirm_def_perfil'])
+    imagen_selected.value = imagen    
 }
 
 onMounted(async ()=>{
