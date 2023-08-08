@@ -125,7 +125,7 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } from 'ionicons/icons';
 import { perfil_mascota_seleccionado, mostrar_alerta } from '../../store/app'
-import { agregar, editar, agregar_foto, eliminar_foto, def_foto_principal  } from '../../api/mascotas'
+import { agregar, editar, quitar, agregar_foto, eliminar_foto, def_foto_principal  } from '../../api/mascotas'
 
 import VistaImagenes from '../../components/VistaImagenes'
 import SelectorFecha from '../../components/SelectorFecha'
@@ -201,8 +201,17 @@ function subir_foto_change( evnt ){
         }
 }
 
-function quitar_mascota(){
-    mostrar_alerta('funcionalidad no implementada')
+async function quitar_mascota(){
+    
+    let res = null
+    res = await quitar({ 'id': perfil_mascota_seleccionado.value.id })
+    if (res.stat){
+        mostrar_alerta(res.text)
+        router.replace('/MisMascotas')
+    } else {
+        mostrar_alerta("Ocurrió un error, reintente más tarde.")
+    }
+    
 }
 
 function perdi_mi_mascota(){
