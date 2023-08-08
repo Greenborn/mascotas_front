@@ -74,6 +74,18 @@ onMounted(async ()=>{
     res = await get_all()
     if (res?.stat){
         listado.value = res.data
+        for (let c=0; c < res?.imagenes?.length; c++)
+            for (let i=0; i < listado.value?.length; i++)
+                if (res.imagenes[c]?.id_mascota == listado.value[i]?.id){
+                    if (listado.value[i]?.imagenes == undefined)
+                        listado.value[i]['imagenes'] = [ res.imagenes[c] ]
+                    else 
+                        listado.value[i]['imagenes'].push( res.imagenes[c] ) 
+
+                    if (res.imagenes[c]?.id == listado.value[i]?.id_imagen_principal)
+                        listado.value[i]['imagen'] = res.imagenes[c]?.url
+                }
+        console.log(listado.value)
         setTimeout(() => { //Se espera un momento a que se actualize la vista esto sera bugero si la vista tarda mas de 200 ms en actualizarse
             def_max_height.value = getMaxHeigth()
         }, 200);
