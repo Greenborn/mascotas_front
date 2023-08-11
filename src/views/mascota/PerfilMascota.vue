@@ -12,7 +12,7 @@
                                     <ion-row class="ion-justify-content-center ion-align-items-center">
                                         <ion-col size="auto"><ion-button @click="perdi_mi_mascota" color="danger"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Reportar Extravío</ion-button></ion-col>
                                         <ion-col size="auto"><ion-button @click="descargar_qr"><ion-icon slot="icon-only" :icon="qrCodeOutline"></ion-icon>&nbsp; Descargar QR</ion-button></ion-col>
-                                        <ion-col size="auto">
+                                        <ion-col size="auto" v-if="perfil_mascota_seleccionado?.id != undefined">
                                             <ion-list>
                                                 <ion-item>
                                                     <ion-toggle :checked="edicion_habilitada" @ionChange="editar_click" labelPlacement="start" ></ion-toggle>
@@ -122,10 +122,10 @@ import { IonItem, IonList } from '@ionic/vue'
 import { IonCol, IonGrid, IonRow, IonPage, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonInput, 
     IonTextarea, IonSelect, IonSelectOption, IonButtons, IonToggle } from '@ionic/vue';
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } from 'ionicons/icons';
 import { perfil_mascota_seleccionado, mostrar_alerta } from '../../store/app'
-import { agregar, editar, quitar, agregar_foto, eliminar_foto, def_foto_principal  } from '../../api/mascotas'
+import { agregar, editar, quitar, def_foto_principal  } from '../../api/mascotas'
 
 import VistaImagenes from '../../components/VistaImagenes'
 import SelectorFecha from '../../components/SelectorFecha'
@@ -158,6 +158,13 @@ const sexo_animal = ref([
 ])
 
 const edicion_habilitada = ref(false)
+
+onMounted(async ()=>{
+    setTimeout(()=>{
+        if (perfil_mascota_seleccionado.value?.id == undefined)
+            edicion_habilitada.value = true
+    }, 200)
+})
 
 function adecuar_formato_entrada( modelo ){
     modelo.tipo             = Number(modelo.tipo)
