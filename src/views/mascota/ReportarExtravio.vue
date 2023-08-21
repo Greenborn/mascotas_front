@@ -10,6 +10,9 @@
                                 <ion-col>
                                     <h2>Reportar extravío de: {{ perfil_mascota_seleccionado?.nombre }}</h2>
                                 </ion-col>
+                                <ion-col>
+                                    <ion-button @click="seleccionar_mascota">Elegir Mascota</ion-button>
+                                </ion-col>
                             </ion-row>
                         </ion-card-header>
 
@@ -31,7 +34,9 @@
                             <ion-grid>
                                 <ion-row class="ion-justify-content-center ion-align-items-center">
                                     <ion-col size="auto"><ion-button @click="volver_a_perfil"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Cancelar</ion-button></ion-col>
-                                    <ion-col size="auto"><ion-button @click="perdi_mi_mascota"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Reportar Extravío</ion-button></ion-col>
+                                    <ion-col size="auto">
+                                        <ion-button @click="perdi_mi_mascota" :disabled="perfil_mascota_seleccionado?.id == undefined"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; 
+                                            Reportar Extravío</ion-button></ion-col>
                                 </ion-row>
                             </ion-grid>
                         </ion-card-content>
@@ -54,7 +59,7 @@
 <script setup>
 import { ref } from 'vue'
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonButtons } from '@ionic/vue';
-import { perfil_mascota_seleccionado } from '../../store/app'
+import { perfil_mascota_seleccionado, mascota_seleccionada_evnt } from '../../store/app'
 import { alertCircleOutline } from 'ionicons/icons';
 import { get_one } from '../../api/mascotas'
 
@@ -66,6 +71,13 @@ const perfil_obtenido = ref()
 
 function perdi_mi_mascota(){
     alert('Funcionalidad no implementada')
+}
+
+function seleccionar_mascota(){
+    mascota_seleccionada_evnt.call_ = ()=>{
+        router.replace('/PerdiMiMascota')
+    }
+    router.replace('/ElegirMascota')
 }
 
 async function volver_a_perfil(){

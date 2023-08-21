@@ -1,40 +1,33 @@
 <template>
     <ion-grid>
         <ion-row>
-            <ion-col>
+            <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="6" size-xl="4" v-for="(p, index) in listado" :key="p">
 
-                <ion-row>
-                    <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="6" size-xl="4" v-for="(p, index) in listado" :key="p">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-row class="ion-justify-content-center ion-align-items-center">
+                            <ion-col>
+                                <div class="w-100 cont-img-mascota" :style="{ 'max-height': def_max_height }">
+                                    <img  :src="getUrlImagen(p.imagen)" 
+                                        class="img-mascota" alt="Imagen Mascota"  />
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                        
+                    </ion-card-header>
 
-                        <ion-card>
-                            <ion-card-header>
-                                <ion-row class="ion-justify-content-center ion-align-items-center">
-                                    <ion-col>
-                                        <div class="w-100 cont-img-mascota" :style="{ 'max-height': def_max_height }">
-                                            <img  :src="getUrlImagen(p.imagen)" 
-                                                class="img-mascota" alt="Imagen Mascota"  />
-                                        </div>
-                                    </ion-col>
-                                </ion-row>
-                                
-                            </ion-card-header>
+                    <ion-card-content>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col><h2><b>{{ p.nombre }}</b></h2></ion-col>
+                            </ion-row>
 
-                            <ion-card-content>
-                                <ion-grid>
-                                    <ion-row>
-                                        <ion-col><h2><b>{{ p.nombre }}</b></h2></ion-col>
-                                    </ion-row>
-
-                                    <ion-row>
-                                        <ion-col><ion-button expand="full" @click="ir_a_perfil(index)">Perfil</ion-button></ion-col>
-                                    </ion-row>
-                                </ion-grid>
-                            </ion-card-content>
-                        </ion-card>
-
-                    </ion-col>
-                </ion-row>
-                
+                            <ion-row>
+                                <ion-col><ion-button expand="full" @click="ir_a_perfil(index)">Perfil</ion-button></ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-content>
+                </ion-card>
 
             </ion-col>
         </ion-row>

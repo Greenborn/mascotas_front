@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 
 export const perfil_mascota_seleccionado:any = ref()
+export const mascota_seleccionada_evnt:any = { call_:()=>{ return null; } }
 export const ruta_actual:any = ref()
 export const user_data:any = ref()
 

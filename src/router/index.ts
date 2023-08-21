@@ -34,6 +34,10 @@ export const ROUTES_CONFIG:any = {
     fullscreen: false,
     titulo: "Reportar Extravío"
   },
+  '/ElegirMascota': {
+    fullscreen: false,
+    titulo: "Elegir Mascota"
+  },
   '/ReportarAparicion': {
     fullscreen: false,
     titulo: "Reportar Aparición"
@@ -100,6 +104,10 @@ const routes = [
   {
     path: '/Cuenta',
     component: () => import ('../views/usuario/PerfilUsuario.vue')
+  },
+  {
+    path: '/ElegirMascota',
+    component: () => import ('../views/mascota/ElegirMascota.vue')
   },
   {
     path: '/MisMascotas',
