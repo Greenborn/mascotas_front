@@ -83,7 +83,7 @@ const modelo = ref({ datos_busqueda:'' })
 async function perdi_mi_mascota(){
     let respuesta_ = undefined
     if (perfil_mascota_seleccionado.value?.id != undefined)
-        respuesta_ = await reportar_extravio( modelo )
+        respuesta_ = await reportar_extravio( {...modelo.value, id_mascota: perfil_mascota_seleccionado.value?.id } )
     else
         mostrar_alerta('Es necesario seleccionar una mascota')
 
