@@ -94,7 +94,7 @@
 <script setup>
 import { ref } from 'vue'
 import { IonItem, IonList, IonToggle } from '@ionic/vue';
-import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea, IonDatetime } from '@ionic/vue';
+import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton, IonInput, IonTextarea } from '@ionic/vue';
 import { user_data } from '../../store/app'
 import { actualizar_datos } from '../../api/usuario'
 

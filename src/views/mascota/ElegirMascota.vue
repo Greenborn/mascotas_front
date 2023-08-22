@@ -3,7 +3,11 @@
     <ion-grid>
         <ion-row class="ion-justify-content-center ion-align-items-center">
             <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
-
+                <ion-row>
+                    <ion-col size="auto">
+                        <ion-button  @click="volver()">Volver</ion-button>
+                    </ion-col>
+                </ion-row>
                 <ion-row>
                     <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="6" size-xl="4" v-for="(p, index) in listado" :key="p">
 
@@ -45,7 +49,7 @@
 import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton } from '@ionic/vue';
 import { onMounted, ref } from 'vue'
 import { get_all, get_one } from '../../api/mascotas'
-import { perfil_mascota_seleccionado, mascota_seleccionada_evnt } from '../../store/app'
+import { perfil_mascota_seleccionado, mascota_seleccionada_evnt, mascota_no_selec_evnt } from '../../store/app'
 
 const perfil_obtenido = ref()
 
@@ -57,6 +61,10 @@ async function elegir(i){
         perfil_mascota_seleccionado.value = perfil_obtenido.value.data
         mascota_seleccionada_evnt.call_()
     }
+}
+
+async function volver(){
+    mascota_no_selec_evnt.call_()
 }
 
 function getUrlImagen( img ){ return process.env.VUE_APP_BACKEND_URL+img }

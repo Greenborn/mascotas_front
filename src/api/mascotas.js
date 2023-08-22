@@ -10,3 +10,4 @@ export function editar( data ) { return service({  url: "/mascotas/editar",    m
 export function def_foto_principal( data ) { return service({  url: "/mascotas/def_foto_principal",    method: 'put', data  }) }
 
 export function perdidas_get_all() {  return service({ url: "/mascotas/perdidas_get_all",  method: 'get'  }) }
+export function reportar_extravio( data ){ return service({  url: "/mascotas/reportar_extravio",    method: 'post', data  }) }

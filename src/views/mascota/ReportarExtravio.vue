@@ -19,7 +19,15 @@
                         <ion-card-content>
                             <ion-grid>
                                 <ion-row class="ion-justify-content-center ion-align-items-center">
-                                   
+                                    <ion-row>
+                                        <ion-col>
+                                            <ion-list>
+                                                <ion-item>
+                                                    <ion-textarea v-model="modelo.datos_busqueda" label="Datos Búsqueda" placeholder="Datos Búsqueda"></ion-textarea></ion-item>
+                                                
+                                            </ion-list>    
+                                        </ion-col>
+                                    </ion-row>
                                 </ion-row>
                             </ion-grid>
                         </ion-card-content>
@@ -57,24 +65,40 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonButtons } from '@ionic/vue';
-import { perfil_mascota_seleccionado, mascota_seleccionada_evnt } from '../../store/app'
+import { ref, onMounted } from 'vue'
+import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, 
+    IonButton, IonButtons,IonTextarea,IonList, IonItem } from '@ionic/vue';
+import { perfil_mascota_seleccionado, mostrar_alerta, mascota_no_selec_evnt, 
+    mascota_seleccionada_evnt } from '../../store/app'
 import { alertCircleOutline } from 'ionicons/icons';
-import { get_one } from '../../api/mascotas'
+import { get_one, reportar_extravio } from '../../api/mascotas'
 
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
 const perfil_obtenido = ref()
+const modelo = ref({ datos_busqueda:'' })
 
-function perdi_mi_mascota(){
-    alert('Funcionalidad no implementada')
+async function perdi_mi_mascota(){
+    let respuesta_ = undefined
+    if (perfil_mascota_seleccionado.value?.id != undefined)
+        respuesta_ = await reportar_extravio( modelo )
+    else
+        mostrar_alerta('Es necesario seleccionar una mascota')
+
+    if (respuesta_.stat) {
+        mostrar_alerta(respuesta_.text)
+    } else {
+        mostrar_alerta('Ocurrio un error')
+    }
 }
 
 function seleccionar_mascota(){
     mascota_seleccionada_evnt.call_ = ()=>{
+        router.replace('/PerdiMiMascota')
+    }
+    mascota_no_selec_evnt.call_ = ()=>{
         router.replace('/PerdiMiMascota')
     }
     router.replace('/ElegirMascota')
@@ -93,4 +117,9 @@ async function volver_a_perfil(){
         router.replace('/perfilMascota')
     }
 }
+
+onMounted(async ()=>{
+    if (perfil_mascota_seleccionado.value?.id == undefined)
+        seleccionar_mascota()
+})
 </script>
