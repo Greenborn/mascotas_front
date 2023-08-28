@@ -17,7 +17,6 @@
 </template>
 
 <script setup>
-import { ref } from  'vue';
 import { IonCol, IonGrid, IonPage, IonRow, IonButton, IonIcon } from '@ionic/vue';
 import { alertCircleOutline } from 'ionicons/icons';
 import ListadoMascotas from '../mascota/ListadoMascotas.vue'

@@ -10,6 +10,10 @@ export const ROUTES_CONFIG:any = {
     fullscreen: true,
     titulo: "Registrarse"
   },
+  '/registro_1': {
+    fullscreen: true,
+    titulo: "Aceptación de Terminos y Condiciones"
+  },
   '/registro_2': {
     fullscreen: true,
     titulo: "Verificacar Cuenta"
@@ -26,10 +30,10 @@ export const ROUTES_CONFIG:any = {
     fullscreen: false,
     titulo: "Mis Mascotas"
   },
-  '/Recomendaciones': {
+  /*'/Recomendaciones': {
     fullscreen: false,
     titulo: "Recomendaciones"
-  },
+  },*/
   '/PerdiMiMascota': {
     fullscreen: false,
     titulo: "Reportar Extravío"
@@ -94,6 +98,10 @@ const routes = [
     component: () => import ('../views/usuario/RegistroUsuario.vue')
   },
   {
+    path: '/registro_1',
+    component: () => import ('../views/usuario/RegistroTyC.vue')
+  },
+  {
     path: '/registro_2',
     component: () => import ('../views/usuario/RegistroVerificacion.vue')
   },
@@ -113,10 +121,10 @@ const routes = [
     path: '/MisMascotas',
     component: () => import ('../views/dashboard/HomePage.vue')
   },
-  {
+  /*{
     path: '/Recomendaciones',
     component: () => import ('../views/mascota/RecomendacionesPage.vue')
-  },
+  },*/
   {
     path: '/PerdiMiMascota',
     component: () => import ('../views/mascota/ReportarExtravio.vue')

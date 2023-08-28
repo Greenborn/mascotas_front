@@ -35,7 +35,7 @@
                                 </ion-list>
                                   
                                 <ion-row>
-                                    <ion-col><ion-button @click="registro_p2" expand="full">Continuar</ion-button></ion-col>
+                                    <ion-col><ion-button @click="registro_p1" expand="full">Continuar</ion-button></ion-col>
                                 </ion-row>
                             </ion-grid>
                         </ion-card-content>
@@ -53,9 +53,8 @@ import { IonItem, IonList } from '@ionic/vue'
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonTextarea } from '@ionic/vue';
 import { IonButton, IonInput } from '@ionic/vue';
 import { useRouter } from 'vue-router'
-import { mostrar_cargando, ocultar_cargando } from '../../store/app'
+import { user_data } from '../../store/app'
 
-import { registro } from '../../api/usuario'
 import SelectorFecha from '../../components/SelectorFecha'
 
 const router = useRouter()
@@ -64,9 +63,7 @@ const modelo = ref({
     nombre: '', email: '', descripcion: '', fecha_nacimiento: { anio: undefined, mes: undefined, dia: undefined }, pass: '', repetir_pass: ''
 })
 
-const result_registro = ref()
-
-async function registro_p2(){
+async function registro_p1(){
 
     if (modelo.value.nombre == '') {
         alert('Es necesario especificar un Nombre.')
@@ -98,14 +95,7 @@ async function registro_p2(){
         return false;
     }
 
-    mostrar_cargando('Registrando nuevo usuario...')
-    result_registro.value = await registro( modelo.value )
-    if (result_registro.value.stat){
-        ocultar_cargando()
-        router.replace('registro_2')
-    } else {
-        alert(result_registro.value.text)
-        ocultar_cargando()
-    }
+    user_data.value = modelo.value
+    router.replace('registro_1')
 }
 </script>

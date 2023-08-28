@@ -19,6 +19,17 @@
                     
                 </ion-col>
             </ion-row>
+
+            <ion-row class="ion-justify-content-center ion-align-items-center vh-100" >
+                <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="6" >
+                    <ion-card>
+                        <ion-card-content>
+                            <ion-button @click="acepta_terminos" expand="full">He Leido y Acepto los Terminos y Condiciones</ion-button>
+                        </ion-card-content>
+                    </ion-card>
+                    
+                </ion-col>
+            </ion-row>
         </ion-grid>
     </ion-page>
 </template>
@@ -28,6 +39,12 @@ import { ref, onMounted } from 'vue'
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader  } from '@ionic/vue';
 
 import { legal } from '../../api/general'
+
+const emit  = defineEmits(['acepta_terminos'])
+
+function acepta_terminos(){
+    emit('acepta_terminos', true)
+}
 
 const terminos_y_condiciones = ref('')
 onMounted(async ()=>{

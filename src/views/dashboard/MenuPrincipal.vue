@@ -31,7 +31,7 @@ const selectedIndex = ref()
 const appPages = [
   { title: 'Cuenta',  url: '/Cuenta', icon: personOutline },
   { title: 'Mis Mascotas',  url: '/MisMascotas', icon: bugOutline },
-  { title: 'Recomendaciones',  url: '/Recomendaciones', icon: informationOutline  },
+  //{ title: 'Recomendaciones',  url: '/Recomendaciones', icon: informationOutline  },
   { title: 'Perdí Mi Mascota',  url: '/PerdiMiMascota', icon: alertCircle  },
   { title: 'Mascotas Perdidas',  url: '/MascotasPerdidas', icon: flag  },
   { title: 'Pedidos y Notificaciones',  url: '/PedidosyNotificaciones', icon: mailOutline  },
