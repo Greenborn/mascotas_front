@@ -55,3 +55,14 @@ export function mostrar_confirmacion( texto:string, funcion_ok:any ){
     APP_alert_ejecutar.value = funcion_ok
     APP_alert_modal.value    = true
 }
+
+export const loading_msg = ref('Cargando...')
+export const present_loading = ref(false)
+export function mostrar_cargando( texto = ''){
+    loading_msg.value = texto
+    present_loading.value = true
+}
+
+export function ocultar_cargando(){
+    present_loading.value = false
+}

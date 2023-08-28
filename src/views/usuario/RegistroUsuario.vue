@@ -44,16 +44,16 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-        <ion-loading v-if="present_loading" message="'Registrando nuevo usuario...'"> </ion-loading>
     </ion-page>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { IonItem, IonList, IonLoading } from '@ionic/vue' 
+import { IonItem, IonList } from '@ionic/vue' 
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonTextarea } from '@ionic/vue';
 import { IonButton, IonInput } from '@ionic/vue';
 import { useRouter } from 'vue-router'
+import { mostrar_cargando, ocultar_cargando } from '../../store/app'
 
 import { registro } from '../../api/usuario'
 import SelectorFecha from '../../components/SelectorFecha'
@@ -64,11 +64,9 @@ const modelo = ref({
     nombre: '', email: '', descripcion: '', fecha_nacimiento: { anio: undefined, mes: undefined, dia: undefined }, pass: '', repetir_pass: ''
 })
 
-const present_loading = ref(false)
 const result_registro = ref()
 
 async function registro_p2(){
-    present_loading.value = true
 
     if (modelo.value.nombre == '') {
         alert('Es necesario especificar un Nombre.')
@@ -100,13 +98,14 @@ async function registro_p2(){
         return false;
     }
 
+    mostrar_cargando('Registrando nuevo usuario...')
     result_registro.value = await registro( modelo.value )
     if (result_registro.value.stat){
-        present_loading.value = false
+        ocultar_cargando()
         router.replace('registro_2')
     } else {
         alert(result_registro.value.text)
-        present_loading.value = false
+        ocultar_cargando()
     }
 }
 </script>

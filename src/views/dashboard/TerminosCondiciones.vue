@@ -20,19 +20,15 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-        <ion-loading v-if="present_loading" :message="loading_msg"> </ion-loading>
     </ion-page>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader  } from '@ionic/vue';
-import { IonLoading } from '@ionic/vue';
 
 import { legal } from '../../api/general'
 
-const loading_msg = ref('')
-const present_loading = ref(false)
 const terminos_y_condiciones = ref('')
 onMounted(async ()=>{
     let res = undefined

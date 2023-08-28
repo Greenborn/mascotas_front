@@ -22,12 +22,12 @@
                             <ion-card-content>
                                 <ion-grid>
                                     <ion-row>
-                                        <ion-col><h2><b>{{ p.nombre }}</b></h2></ion-col>
+                                        <ion-col><h1><b>{{ p.nombre }}</b></h1></ion-col>
                                     </ion-row>
 
                                     <ion-row>
                                         <ion-col>
-                                            <p>{{ p.reporte.comentario }}</p>
+                                            <h2><b>{{ p.reporte.comentario }}</b></h2>
                                         </ion-col>
                                     </ion-row>
 

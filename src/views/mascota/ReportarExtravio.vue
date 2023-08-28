@@ -67,7 +67,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, 
-    IonButton, IonButtons,IonTextarea,IonList, IonItem } from '@ionic/vue';
+    IonButton,IonTextarea,IonList, IonItem } from '@ionic/vue';
 import { perfil_mascota_seleccionado, mostrar_alerta, mascota_no_selec_evnt, 
     mascota_seleccionada_evnt } from '../../store/app'
 import { alertCircleOutline } from 'ionicons/icons';

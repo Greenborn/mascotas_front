@@ -39,7 +39,6 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-        <ion-loading v-if="present_loading" :message="loading_msg"> </ion-loading>
     </ion-page>
 </template>
 
@@ -48,9 +47,8 @@ import { ref } from 'vue'
 import { IonItem, IonList } from '@ionic/vue' 
 import { IonCol, IonPage, IonGrid, IonRow, IonImg, IonCard, IonCardContent, IonCardHeader  } from '@ionic/vue';
 import { IonButton, IonInput } from '@ionic/vue';
-import { IonLoading } from '@ionic/vue';
 import { useRouter } from 'vue-router'
-import { user_data } from '../../store/app'
+import { user_data, mostrar_cargando, ocultar_cargando } from '../../store/app'
 
 import { login } from '../../api/usuario'
 
@@ -59,8 +57,7 @@ const router = useRouter()
 const modelo = ref({
     u: '',  p: ''
 })
-const loading_msg = ref('')
-const present_loading = ref(false)
+
 const res_login = ref()
 
 async function do_login(){
@@ -74,16 +71,15 @@ async function do_login(){
         return
     }
 
-    loading_msg.value = 'Iniciando Sesión...'
-    present_loading.value = true
+    mostrar_cargando( 'Iniciando Sesión...' )
 
     res_login.value = await login(modelo.value)
     if (res_login.value?.stat) {
-        present_loading.value = false
+        ocultar_cargando()
         user_data.value = res_login.value?.data
         router.replace('home')
     } else {
-        present_loading.value = false
+        ocultar_cargando()
         alert(res_login.value.text)
     }
 }

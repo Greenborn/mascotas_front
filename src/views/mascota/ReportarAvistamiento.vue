@@ -7,7 +7,6 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-        <ion-loading v-if="present_loading" :message="loading_msg"> </ion-loading>
     </ion-page>
 </template>
 
