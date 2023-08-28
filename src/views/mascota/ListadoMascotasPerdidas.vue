@@ -26,7 +26,13 @@
                                     </ion-row>
 
                                     <ion-row>
-                                        <ion-col><ion-button expand="full" @click="ir_a_perfil(index)">Perfil</ion-button></ion-col>
+                                        <ion-col>
+                                            <p>{{ p.reporte.comentario }}</p>
+                                        </ion-col>
+                                    </ion-row>
+
+                                    <ion-row>
+                                        <ion-col><ion-button expand="full" @click="reportar_avistamiento(index)">Reportar avistamiento</ion-button></ion-col>
                                     </ion-row>
                                 </ion-grid>
                             </ion-card-content>
@@ -45,7 +51,7 @@
 import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton } from '@ionic/vue';
 import { useRouter } from 'vue-router'
 import { onMounted, ref } from 'vue'
-import { perdidas_get_all, get_one } from '../../api/mascotas'
+import { perdidas_get_all } from '../../api/mascotas'
 import { perfil_mascota_seleccionado } from '../../store/app'
 
 const perfil_obtenido = ref()
@@ -53,12 +59,9 @@ const router = useRouter()
 
 const listado = ref()
 
-async function ir_a_perfil(i){
-    perfil_obtenido.value = await get_one( listado.value[i].id )
-    if (perfil_obtenido.value.stat) {
-        perfil_mascota_seleccionado.value = perfil_obtenido.value.data
-        router.replace('/perfilMascota')
-    }
+async function reportar_avistamiento(i){
+    perfil_mascota_seleccionado.value = listado.value[i]
+    router.replace('/ReportarAparicion')
 }
 
 function getUrlImagen( img ){ return process.env.VUE_APP_BACKEND_URL+img }
@@ -74,6 +77,12 @@ onMounted(async ()=>{
     res = await perdidas_get_all()
     if (res?.stat){
         listado.value = res.data
+        for (let c=0; c < listado.value.length; c++)
+            for (let i=0; i < res.registro_perdida.length; i ++)
+                if (res.registro_perdida[i].id_mascota == listado.value[c].id)
+                    listado.value[c]['reporte'] = res.registro_perdida[i]
+            
+        console.log()
         setTimeout(() => { //Se espera un momento a que se actualize la vista esto sera bugero si la vista tarda mas de 200 ms en actualizarse
             def_max_height.value = getMaxHeigth()
         }, 200);
