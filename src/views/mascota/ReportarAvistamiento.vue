@@ -43,7 +43,13 @@
                                                     </ion-item>
 
                                                     <ion-item>
-                                                        Adjuntar ubicación
+                                                        <ion-button @click="agrega_ubicacion">
+                                                            <ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Adjuntar Ubicación</ion-button>
+                                                    </ion-item>
+
+                                                    <ion-item>
+                                                        <ion-button @click="agrega_ubicacion">
+                                                            <ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Adjuntar Imágenes</ion-button>
                                                     </ion-item>
                                                 </ion-list>
                                    
@@ -75,11 +81,25 @@
 <script setup>
 import { ref } from 'vue'
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonList, IonItem, IonTextarea } from '@ionic/vue';
-import { perfil_mascota_seleccionado } from '../../store/app'
+import { perfil_mascota_seleccionado, mostrar_cargando, ocultar_cargando } from '../../store/app'
 import { alertCircleOutline } from 'ionicons/icons';
+import { reportar_avistamiento } from '../../api/mascotas'
 
-const modelo = ref({ descripcion: '' })
-function reportar(){
+const modelo = ref({ descripcion: '', id: '' })
+async function reportar(){
+    let respuesta_ = undefined
+    mostrar_cargando('Enviando reporte...')
+    modelo.value.id = perfil_mascota_seleccionado.value?.reporte?.id
+    respuesta_= await reportar_avistamiento(modelo.value)
+    if (respuesta_?.stat) {
+        ocultar_cargando()
+    } else {
+        ocultar_cargando()
+        alert(respuesta_.text)
+    }
+}
+
+function agrega_ubicacion(){
     alert('Funcionalidad no implementada')
 }
 </script>
