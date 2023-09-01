@@ -10,7 +10,8 @@
                             <ion-card-content>
                                 <ion-grid>
                                     <ion-row class="ion-justify-content-center ion-align-items-center">
-                                        <ion-col size="auto"><ion-button @click="perdi_mi_mascota" color="danger"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Reportar Extravío</ion-button></ion-col>
+                                        <ion-col size="auto" v-if="(modelo.perdida) && modelo.id !== null"><ion-button @click="set_encontrada" color="success"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; ¡Fue Encontrada!</ion-button></ion-col>
+                                        <ion-col size="auto" v-if="(!modelo.perdida) && modelo.id !== null"><ion-button @click="perdi_mi_mascota" color="danger"><ion-icon slot="icon-only" :icon="alertCircleOutline"></ion-icon>&nbsp; Reportar Extravío</ion-button></ion-col>
                                         <ion-col size="auto"><ion-button @click="descargar_qr"><ion-icon slot="icon-only" :icon="qrCodeOutline"></ion-icon>&nbsp; Descargar QR</ion-button></ion-col>
                                         <ion-col size="auto" v-if="perfil_mascota_seleccionado?.id != undefined">
                                             <ion-list>
@@ -124,8 +125,8 @@ import { IonCol, IonGrid, IonRow, IonPage, IonCard, IonIcon, IonCardContent, Ion
 import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } from 'ionicons/icons';
-import { perfil_mascota_seleccionado, mostrar_alerta } from '../../store/app'
-import { agregar, editar, quitar, def_foto_principal  } from '../../api/mascotas'
+import { perfil_mascota_seleccionado, mostrar_alerta, mostrar_cargando, ocultar_cargando } from '../../store/app'
+import { agregar, editar, quitar, def_foto_principal, fue_encontrada  } from '../../api/mascotas'
 
 import VistaImagenes from '../../components/VistaImagenes'
 import SelectorFecha from '../../components/SelectorFecha'
@@ -144,7 +145,7 @@ const router = useRouter()
 const modelo = ref(
     perfil_mascota_seleccionado.value ? adecuar_formato_entrada(perfil_mascota_seleccionado.value) :
     {
-        nombre: '', descripcion: '', raza: '', sexo: 1, tipo: 1, fecha_nacimiento: new Date(), imagenes: []
+        nombre: '', descripcion: '', raza: '', sexo: 1, tipo: 1, fecha_nacimiento: new Date(), imagenes: [], perdida: false, id: null
     }
 )
 const tipos_animales = ref([
@@ -165,6 +166,20 @@ onMounted(async ()=>{
             edicion_habilitada.value = true
     }, 200)
 })
+
+async function set_encontrada(){
+    mostrar_cargando()
+    let res = undefined
+    res = await fue_encontrada( { id: perfil_mascota_seleccionado.value?.id} )
+    if (res.stat){
+        mostrar_alerta(res.text)
+        modelo.value.perdida = false
+        ocultar_cargando()
+    } else {
+        mostrar_alerta(res.text)
+        ocultar_cargando()
+    }
+}
 
 function adecuar_formato_entrada( modelo ){
     modelo.tipo             = Number(modelo.tipo)
@@ -289,6 +304,7 @@ async function guardar(){
 
     if (respuesta_.stat) {
         mostrar_alerta(respuesta_.text)
+        router.replace('/home')
     } else {
         mostrar_alerta('Ocurrio un error')
     }

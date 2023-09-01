@@ -12,3 +12,4 @@ export function def_foto_principal( data ) { return service({  url: "/mascotas/d
 export function perdidas_get_all() {  return service({ url: "/mascotas/perdidas_get_all",  method: 'get'  }) }
 export function reportar_extravio( data ){ return service({  url: "/mascotas/reportar_extravio",    method: 'post', data  }) }
 export function reportar_avistamiento( data ){ return service({  url: "/mascotas/reportar_avistamiento",  method: 'post', data  }) }
+export function fue_encontrada( data ){ return service({  url: "/mascotas/fue_encontrada",  method: 'put', data  }) }

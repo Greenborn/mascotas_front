@@ -39,7 +39,7 @@ import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonBut
 import { useRouter } from 'vue-router'
 import { onMounted, ref } from 'vue'
 import { get_all, get_one } from '../../api/mascotas'
-import { perfil_mascota_seleccionado } from '../../store/app'
+import { perfil_mascota_seleccionado, mostrar_cargando, ocultar_cargando } from '../../store/app'
 
 const perfil_obtenido = ref()
 const router = useRouter()
@@ -64,6 +64,7 @@ function getMaxHeigth(){
 
 onMounted(async ()=>{
     let res = undefined
+    mostrar_cargando()
     res = await get_all()
     if (res?.stat){
         listado.value = res.data
@@ -81,8 +82,12 @@ onMounted(async ()=>{
         console.log(listado.value)
         setTimeout(() => { //Se espera un momento a que se actualize la vista esto sera bugero si la vista tarda mas de 200 ms en actualizarse
             def_max_height.value = getMaxHeigth()
+            
         }, 200);
         console.log(res)
-    } 
+        ocultar_cargando()
+    } else {
+        ocultar_cargando()
+    }
 })
 </script>
