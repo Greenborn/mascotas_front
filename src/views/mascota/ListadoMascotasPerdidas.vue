@@ -4,6 +4,21 @@
             <ion-col>
 
                 <ion-row>
+                    <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="6" size-xl="4" v-if="listado?.length == 0">
+                        <ion-card>
+                        
+                            <ion-card-content>
+                                <ion-grid>
+
+                                    <ion-row>
+                                        <ion-col><h1><b>¡No se reportan Mascotas Perdidas!</b></h1></ion-col>
+                                    </ion-row>
+
+                                </ion-grid>
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+
                     <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="6" size-xl="4" v-for="(p, index) in listado" :key="p">
 
                         <ion-card>

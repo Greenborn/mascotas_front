@@ -89,6 +89,7 @@ async function perdi_mi_mascota(){
 
     if (respuesta_.stat) {
         mostrar_alerta(respuesta_.text)
+        router.replace('/PerfilMascota')
     } else {
         mostrar_alerta('Ocurrio un error')
     }
