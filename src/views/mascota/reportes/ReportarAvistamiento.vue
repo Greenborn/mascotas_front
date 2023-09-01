@@ -22,7 +22,7 @@
                                     <ion-grid>
                                         <ion-row>
                                             <ion-col>
-                                                Reportado el: {{ perfil_mascota_seleccionado?.reporte?.fecha_registro }}
+                                                Reportado el: {{ date2string(perfil_mascota_seleccionado?.reporte?.fecha_registro) }}
                                             </ion-col>
                                         </ion-row>
 
@@ -81,9 +81,13 @@
 <script setup>
 import { ref } from 'vue'
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonList, IonItem, IonTextarea } from '@ionic/vue';
-import { perfil_mascota_seleccionado, mostrar_cargando, ocultar_cargando } from '../../store/app'
+import { perfil_mascota_seleccionado, mostrar_cargando, ocultar_cargando } from '../../../store/app'
 import { alertCircleOutline } from 'ionicons/icons';
-import { reportar_avistamiento } from '../../api/mascotas'
+import { reportar_avistamiento } from '../../../api/mascotas'
+import { date2string } from '../../../utils/fechas'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const modelo = ref({ descripcion: '', id: '' })
 async function reportar(){
@@ -93,6 +97,7 @@ async function reportar(){
     respuesta_= await reportar_avistamiento(modelo.value)
     if (respuesta_?.stat) {
         ocultar_cargando()
+        router.replace('/ReportarAparicionOK')
     } else {
         ocultar_cargando()
         alert(respuesta_.text)

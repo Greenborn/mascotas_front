@@ -69,9 +69,9 @@ import { ref, onMounted } from 'vue'
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, 
     IonButton,IonTextarea,IonList, IonItem } from '@ionic/vue';
 import { perfil_mascota_seleccionado, mostrar_alerta, mascota_no_selec_evnt, 
-    mascota_seleccionada_evnt } from '../../store/app'
+    mascota_seleccionada_evnt } from '../../../store/app'
 import { alertCircleOutline } from 'ionicons/icons';
-import { get_one, reportar_extravio } from '../../api/mascotas'
+import { get_one, reportar_extravio } from '../../../api/mascotas'
 
 import { useRouter } from 'vue-router'
 

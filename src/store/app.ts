@@ -61,6 +61,7 @@ export const present_loading = ref(false)
 export function mostrar_cargando( texto = ''){
     loading_msg.value = texto
     present_loading.value = true
+    console.log(texto)
 }
 
 export function ocultar_cargando(){

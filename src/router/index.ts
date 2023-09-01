@@ -50,6 +50,10 @@ export const ROUTES_CONFIG:any = {
     fullscreen: false,
     titulo: "Mascotas Perdidas"
   },
+  '/ReportarAparicionOK': {
+    fullscreen: false,
+    titulo: "Reporte Recibido"
+  },
   '/PedidosyNotificaciones': {
     fullscreen: false,
     titulo: "Pedidos y Notificaciones"
@@ -127,11 +131,15 @@ const routes = [
   },*/
   {
     path: '/PerdiMiMascota',
-    component: () => import ('../views/mascota/ReportarExtravio.vue')
+    component: () => import ('../views/mascota/reportes/ReportarExtravio.vue')
   },
   {
     path: '/ReportarAparicion',
-    component: () => import ('../views/mascota/ReportarAvistamiento.vue')
+    component: () => import ('../views/mascota/reportes/ReportarAvistamiento.vue')
+  },
+  {
+    path: '/ReportarAparicionOK',
+    component: () => import ('../views/mascota/reportes/ReporteExito.vue')
   },
   {
     path: '/MascotasPerdidas',
