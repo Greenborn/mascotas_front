@@ -75,7 +75,7 @@
 import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, 
     IonButton, IonPage, IonInput, IonTextarea, IonDatetime, IonIcon, IonItem, IonList } from '@ionic/vue';
 import { onMounted, ref } from 'vue'
-import { get_one } from '../../api/mascotas'
+import { get_qr } from '../../api/mascotas'
 import { createOutline, alertCircleOutline, qrCodeOutline, addCircleOutline } from 'ionicons/icons';
 
 import VistaImagenes from '../../components/VistaImagenes'
@@ -92,7 +92,7 @@ onMounted(async ()=>{
 
     id_perfil = location.href.split('/#/qr?i=')[1]
     if (id_perfil != ''){
-        res = await get_one( id_perfil )
+        res = await get_qr( id_perfil )
         if (res?.stat) {
             perfil_obtenido.value = res.data
         }

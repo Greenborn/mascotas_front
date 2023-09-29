@@ -1,52 +1,53 @@
 <template>
-    
-    <ion-grid>
-        <ion-row class="ion-justify-content-center ion-align-items-center">
-            <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
-                <ion-row>
-                    <ion-col size="auto">
-                        <ion-button  @click="volver()">Volver</ion-button>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="6" size-xl="4" v-for="(p, index) in listado" :key="p">
+    <ion-page id="main-content" class="def-fondo">
+        <ion-grid>
+            <ion-row class="ion-justify-content-center ion-align-items-center">
+                <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="8">
+                    <ion-row>
+                        <ion-col size="auto">
+                            <ion-button  @click="volver()">Volver</ion-button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size-xs="12" size-sm="12" size-md="10" size-lg="6" size-xl="4" v-for="(p, index) in listado" :key="p">
 
-                        <ion-card>
-                            <ion-card-header>
-                                <ion-row class="ion-justify-content-center ion-align-items-center">
-                                    <ion-col>
-                                        <div class="w-100 cont-img-mascota" :style="{ 'max-height': def_max_height }">
-                                            <img  :src="getUrlImagen(p.imagen)" 
-                                                class="img-mascota" alt="Imagen Mascota"  />
-                                        </div>
-                                    </ion-col>
-                                </ion-row>
-                                
-                            </ion-card-header>
-
-                            <ion-card-content>
-                                <ion-grid>
-                                    <ion-row>
-                                        <ion-col><h2><b>{{ p.nombre }}</b></h2></ion-col>
+                            <ion-card>
+                                <ion-card-header>
+                                    <ion-row class="ion-justify-content-center ion-align-items-center">
+                                        <ion-col>
+                                            <div class="w-100 cont-img-mascota" :style="{ 'max-height': def_max_height }">
+                                                <img  :src="getUrlImagen(p.imagen)" 
+                                                    class="img-mascota" alt="Imagen Mascota"  />
+                                            </div>
+                                        </ion-col>
                                     </ion-row>
+                                    
+                                </ion-card-header>
 
-                                    <ion-row>
-                                        <ion-col><ion-button expand="full" @click="elegir(index)">Elegir</ion-button></ion-col>
-                                    </ion-row>
-                                </ion-grid>
-                            </ion-card-content>
-                        </ion-card>
+                                <ion-card-content>
+                                    <ion-grid>
+                                        <ion-row>
+                                            <ion-col><h2><b>{{ p.nombre }}</b></h2></ion-col>
+                                        </ion-row>
 
-                    </ion-col>
-                </ion-row>
+                                        <ion-row>
+                                            <ion-col><ion-button expand="full" @click="elegir(index)">Elegir</ion-button></ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-card-content>
+                            </ion-card>
 
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+                        </ion-col>
+                    </ion-row>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-page>
 </template>
 
 <script setup>
-import { IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton } from '@ionic/vue';
+import { IonPage, IonCol, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader, IonButton } from '@ionic/vue';
 import { onMounted, ref } from 'vue'
 import { get_all, get_one } from '../../api/mascotas'
 import { perfil_mascota_seleccionado, mascota_seleccionada_evnt, mascota_no_selec_evnt } from '../../store/app'
