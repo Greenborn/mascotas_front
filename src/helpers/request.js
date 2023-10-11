@@ -45,7 +45,9 @@ const create = function( url ){
   
       const res = response.data
       //console.log("resdata", res)
-  
+      if (!res.stat && res.code == 'DO_LOGIN'){
+        location.href = '#/login'
+      }
       // if the custom code is not 20000, it is judged as an error.
       // console.log(res)
       return res
