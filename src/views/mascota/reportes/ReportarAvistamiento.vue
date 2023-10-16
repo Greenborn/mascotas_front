@@ -105,6 +105,26 @@ async function reportar(){
 }
 
 function agrega_ubicacion(){
-    alert('Funcionalidad no implementada')
+    
+    if (!navigator?.geolocation) {
+		return alert("Tu navegador no soporta el acceso a la ubicación. Intenta con otro");
+	}
+
+	const onUbicacionConcedida = ubicacion => {
+		alert("Tengo la ubicación: ", JSON.stringify(ubicacion));
+	}
+  
+	const onErrorDeUbicacion = err => {
+		alert("Error obteniendo ubicación: ", JSON.stringify(err));
+	}
+
+	const opcionesDeSolicitud = {
+		enableHighAccuracy: true, // Alta precisión
+		maximumAge: 0, // No queremos caché
+		timeout: 5000 // Esperar solo 5 segundos
+	};
+	// Solicitar
+	navigator.geolocation.getCurrentPosition(onUbicacionConcedida, onErrorDeUbicacion, opcionesDeSolicitud);
+    //alert('Funcionalidad no implementada')
 }
 </script>
