@@ -25,7 +25,7 @@
 import { ref } from  'vue';
 import { IonIcon, IonMenuToggle, IonItem, IonLabel, IonList } from '@ionic/vue';
 import { IonContent, IonHeader, IonMenu, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-import { personOutline, bugOutline, informationOutline, alertCircle, flag, mailOutline, documentOutline, logOutOutline, helpCircleOutline } from 'ionicons/icons';
+import { personOutline, bugOutline, informationOutline, cartOutline, alertCircle, flag, mailOutline, documentOutline, logOutOutline, helpCircleOutline } from 'ionicons/icons';
 const selectedIndex = ref()
 
 const appPages = [
@@ -34,6 +34,7 @@ const appPages = [
   //{ title: 'Recomendaciones',  url: '/Recomendaciones', icon: informationOutline  },
   { title: 'Perdí Mi Mascota',  url: '/PerdiMiMascota', icon: alertCircle  },
   { title: 'Mascotas Perdidas',  url: '/MascotasPerdidas', icon: flag  },
+  //{ title: 'Catálogo',  url: '/Catalogo', icon: cartOutline  },
   { title: 'Pedidos y Notificaciones',  url: '/PedidosyNotificaciones', icon: mailOutline  },
   { title: 'Ayuda y preguntas Frecuentes',  url: '/faq', icon: helpCircleOutline  },
   { title: 'Terminos y Condiciones',  url: '/TerminosYCondiciones', icon: documentOutline  },

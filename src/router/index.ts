@@ -30,6 +30,10 @@ export const ROUTES_CONFIG:any = {
     fullscreen: false,
     titulo: "Mis Mascotas"
   },
+  '/Catalogo': {
+    fullscreen: false,
+    titulo: "Catálogo"
+  },
   /*'/Recomendaciones': {
     fullscreen: false,
     titulo: "Recomendaciones"
@@ -121,9 +125,13 @@ const routes = [
     path: '/ElegirMascota',
     component: () => import ('../views/mascota/ElegirMascota.vue')
   },
-  {
+  { 
     path: '/MisMascotas',
     component: () => import ('../views/dashboard/HomePage.vue')
+  },
+  {
+    path: '/Catalogo',
+    component: () => import ('../views/mercado/CatalogoView.vue')
   },
   /*{
     path: '/Recomendaciones',
