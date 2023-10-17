@@ -111,7 +111,8 @@ function agrega_ubicacion(){
 	}
 
 	const onUbicacionConcedida = ubicacion => {
-		alert("Tengo la ubicación: ", JSON.stringify(ubicacion));
+		alert("Tengo la ubicación: "+ ubicacion.coords.latitude +' ' + ubicacion.coords.longitude);
+        console.log(ubicacion)
 	}
   
 	const onErrorDeUbicacion = err => {
