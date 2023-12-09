@@ -1,6 +1,9 @@
 <template>
     <ion-list>
         <ion-item>
+            <label>{{ label }}</label>
+        </ion-item>
+        <ion-item>
             <ion-select label="Año" placeholder="Año" 
                 v-model="modelo.anio" :disabled="disabled" @ionChange="cambio_fecha">
                 <ion-select-option v-for="anio in anios" :key="anio" :value="anio.v">{{anio.t}}</ion-select-option>
@@ -28,7 +31,7 @@
     import { MESES } from '../const'
     import { diasEnUnMes } from '../utils/fechas'
 
-    const props = defineProps(['modelValue', 'disabled'])
+    const props = defineProps(['modelValue', 'label', 'disabled'])
     const emit  = defineEmits(['update:modelValue'])
 
     const modelo = ref({ anio: undefined, mes: undefined, dia: undefined })

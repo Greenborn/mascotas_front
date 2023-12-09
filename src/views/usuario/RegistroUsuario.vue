@@ -25,7 +25,7 @@
                                     <ion-item>
                                         <ion-textarea label="Descripción" placeholder="Descripción"  v-model="modelo.descripcion"></ion-textarea>
                                     </ion-item>
-                                    <SelectorFecha v-model="modelo.fecha_nacimiento" />
+                                    <SelectorFecha label="Fecha de Nacimiento" v-model="modelo.fecha_nacimiento" />
                                     <ion-item>
                                         <ion-input label="Contraseña" type="password" value="password" v-model="modelo.pass"></ion-input>
                                     </ion-item>
