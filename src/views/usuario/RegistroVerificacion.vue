@@ -35,9 +35,12 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader  } from '@ionic/vue';
 import { IonButton, IonInput } from '@ionic/vue';
 import { useRouter } from 'vue-router'
+
+import { user_data } from '../../store/app'
 
 const router = useRouter()
 
@@ -45,4 +48,9 @@ const router = useRouter()
 function registro_p3(){
     router.replace('home')
 }
+
+onMounted(async ()=>{
+    if (!user_data?.value?.resp_registro_1)
+        router.replace('registro')
+})
 </script>

@@ -95,7 +95,7 @@ async function registro_p1(){
         return false;
     }
 
-    if (modelo.value.repetir_pass !== modelo.value.password ) {
+    if (modelo.value.repetir_pass !== modelo.value.pass ) {
         alert('La Contraseña definida no coincide con la Repetición de Contraseña.')
         return false;
     }

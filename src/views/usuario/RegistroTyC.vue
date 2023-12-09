@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeader  } from '@ionic/vue';
 import { IonButton } from '@ionic/vue';
 import { useRouter } from 'vue-router'
@@ -22,6 +22,7 @@ async function acepta_terminos(){
     result_registro.value = await registro( user_data.value )
     if (result_registro.value.stat){
         ocultar_cargando()
+        user_data.value['resp_registro_1'] = result_registro.value
         router.replace('registro_2')
     } else {
         alert(result_registro.value.text)
@@ -29,4 +30,9 @@ async function acepta_terminos(){
     }
     
 }
+
+onMounted(async ()=>{
+    if (user_data.value == undefined)
+        router.replace('registro')
+})
 </script>
