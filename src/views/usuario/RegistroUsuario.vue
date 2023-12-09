@@ -17,20 +17,20 @@
                             <ion-grid>                       
                                 <ion-list>
                                     <ion-item>
-                                        <ion-input label="Nombre" placeholder="Nombre" v-model="modelo.nombre"></ion-input>
+                                        <ion-input class="text-right" label="Nombre" placeholder="Nombre" v-model="modelo.nombre"></ion-input>
                                     </ion-item>
                                     <ion-item>
-                                        <ion-input label="E-Mail" placeholder="E-Mail"  v-model="modelo.email"></ion-input>
+                                        <ion-input class="text-right" label="E-Mail" placeholder="E-Mail"  v-model="modelo.email"></ion-input>
                                     </ion-item>
                                     <ion-item>
-                                        <ion-textarea label="Descripción" placeholder="Descripción"  v-model="modelo.descripcion"></ion-textarea>
+                                        <ion-textarea class="text-right" label="Descripción" placeholder="Descripción"  v-model="modelo.descripcion"></ion-textarea>
                                     </ion-item>
                                     <SelectorFecha label="Fecha de Nacimiento" v-model="modelo.fecha_nacimiento" />
                                     <ion-item>
-                                        <ion-input label="Contraseña" type="password" value="password" v-model="modelo.pass"></ion-input>
+                                        <ion-input class="text-right" label="Contraseña" type="password" value="password" v-model="modelo.pass"></ion-input>
                                     </ion-item>
                                     <ion-item>
-                                        <ion-input label="Repetir Contraseña" type="password" value="password" v-model="modelo.repetir_pass"></ion-input>
+                                        <ion-input class="text-right" label="Repetir Contraseña" type="password" value="password" v-model="modelo.repetir_pass"></ion-input>
                                     </ion-item>
                                 </ion-list>
                                   
@@ -92,6 +92,11 @@ async function registro_p1(){
 
     if (modelo.value.repetir_pass == '') {
         alert('Es necesario especificar la repetición de la Contraseña.')
+        return false;
+    }
+
+    if (modelo.value.repetir_pass !== modelo.value.password ) {
+        alert('La Contraseña definida no coincide con la Repetición de Contraseña.')
         return false;
     }
 

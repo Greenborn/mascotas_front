@@ -272,3 +272,7 @@ ion-grid{
 .cont-img-mascota{
   overflow: hidden;
 }
+
+.text-right{
+  text-align: right;
+}
