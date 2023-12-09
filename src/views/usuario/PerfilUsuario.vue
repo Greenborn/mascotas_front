@@ -60,15 +60,15 @@
                                         <ion-col>
                                             <ion-list>
                                                 <ion-item>
-                                                    <ion-input :disabled="!edicion_habilitada" v-model="modelo.nombre" label="Nombre" placeholder="Nombre"></ion-input></ion-item>
+                                                    <ion-input class="text-right" :disabled="!edicion_habilitada" v-model="modelo.nombre" label="Nombre" placeholder="Nombre"></ion-input></ion-item>
                                                 <ion-item>
-                                                    <ion-textarea :disabled="!edicion_habilitada" v-model="modelo.descripcion" label="Descripción" placeholder="Descripción"></ion-textarea></ion-item>
+                                                    <ion-textarea class="text-right" :disabled="!edicion_habilitada" v-model="modelo.descripcion" label="Descripción" placeholder="Descripción"></ion-textarea></ion-item>
                                                 <ion-item>
-                                                    <ion-input  :disabled="!edicion_habilitada" v-model="modelo.email" label="E-Mail" placeholder="E-Mail"></ion-input></ion-item>
+                                                    <ion-input class="text-right" :disabled="!edicion_habilitada" v-model="modelo.email" label="E-Mail" placeholder="E-Mail"></ion-input></ion-item>
                                                 <ion-item>
-                                                    <ion-input :disabled="!edicion_habilitada" v-model="modelo.pass"  label="Contraseña" type="password" value="password"></ion-input></ion-item>
+                                                    <ion-input class="text-right" :disabled="!edicion_habilitada" v-model="modelo.pass"  label="Contraseña" type="password" value="password"></ion-input></ion-item>
                                                 <ion-item>
-                                                    <ion-input :disabled="!edicion_habilitada" v-model="modelo.rep_pass"  label="Repetir Contraseña" type="password" value="password"></ion-input></ion-item>
+                                                    <ion-input class="text-right" :disabled="!edicion_habilitada" v-model="modelo.rep_pass"  label="Repetir Contraseña" type="password" value="password"></ion-input></ion-item>
                                             </ion-list>    
                                         </ion-col>
                                     </ion-row>
@@ -117,6 +117,7 @@ function inicializa_modelo(){
 
 async function editar(){
     const model_send = JSON.parse( JSON.stringify( modelo.value ) )
+    delete model_send.permisos
 
     if (model_send.nombre == ''){
         alert('Se espera nombre de usuario')

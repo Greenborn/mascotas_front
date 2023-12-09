@@ -72,29 +72,29 @@
                                     <ion-item>
                                         <ion-input 
                                             :disabled="!edicion_habilitada" v-model="modelo.nombre"
-                                            label="Nombre" placeholder="Nombre" />
+                                            class="text-right" label="Nombre" placeholder="Nombre" />
                                     </ion-item>
                                     <ion-item>
                                         <ion-textarea 
                                             :disabled="!edicion_habilitada"  v-model="modelo.descripcion"
-                                            label="Descripción" placeholder="Descripción" />
+                                            class="text-right" label="Descripción" placeholder="Descripción" />
                                     </ion-item>
                                     <ion-item>
                                         <ion-select 
                                             :disabled="!edicion_habilitada" v-model="modelo.tipo"
-                                            label="Es un" placeholder="Es un">
+                                            class="text-right" label="Es un" placeholder="Es un">
                                             <ion-select-option v-for="tipo in tipos_animales" :key="tipo" :value="tipo.v">{{tipo.t}}</ion-select-option>
                                         </ion-select>
                                     </ion-item>
                                     <ion-item>
                                         <ion-input 
                                             :disabled="!edicion_habilitada" v-model="modelo.raza"
-                                            label="Raza" placeholder="Raza" />
+                                            class="text-right" label="Raza" placeholder="Raza" />
                                     </ion-item>
                                     <ion-item>
                                         <ion-select 
                                             :disabled="!edicion_habilitada" v-model="modelo.sexo"
-                                            label="Sexo" placeholder="Sexo">
+                                            class="text-right" label="Sexo" placeholder="Sexo">
                                             <ion-select-option v-for="sex in sexo_animal" :key="sex" :value="sex.v">{{sex.t}}</ion-select-option>
                                         </ion-select>
                                     </ion-item>

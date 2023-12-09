@@ -19,8 +19,8 @@
                                 <ion-row>
                                     <ion-col>
                                         <ion-list>
-                                            <ion-item><ion-input label="Usuario (E-Mail)" placeholder="Usuario (E-Mail)" v-model="modelo.u"></ion-input></ion-item>
-                                            <ion-item><ion-input label="Contraseña" placeholder="Contraseña" type="password" v-model="modelo.p"></ion-input></ion-item>
+                                            <ion-item><ion-input class="text-right" label="Usuario (E-Mail)" placeholder="Usuario (E-Mail)" v-model="modelo.u"></ion-input></ion-item>
+                                            <ion-item><ion-input class="text-right" label="Contraseña" placeholder="Contraseña" type="password" v-model="modelo.p"></ion-input></ion-item>
                                         </ion-list>
                                     </ion-col>
                                 </ion-row>
