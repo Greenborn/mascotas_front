@@ -98,10 +98,11 @@ import { IonCol, IonPage, IonGrid, IonRow, IonCard, IonCardContent, IonCardHeade
 import { user_data } from '../../store/app'
 import { actualizar_datos } from '../../api/usuario'
 
+import { useAuth } from '../../helpers/authComposable'
 import SelectorFecha from '../../components/SelectorFecha'
 
 const p = { nombre: 'Flia. Tonnini', imagen: 'assets/test/person.jpeg' }
-
+const authCompo = useAuth()
 const modelo = ref(inicializa_modelo())
 
 const edicion_habilitada = ref(false)
@@ -115,23 +116,25 @@ function inicializa_modelo(){
 }
 
 async function editar(){
-    if (modelo.value.nombre == ''){
+    const model_send = JSON.parse( JSON.stringify( modelo.value ) )
+
+    if (model_send.nombre == ''){
         alert('Se espera nombre de usuario')
         return false
     }
 
-    if (modelo.value.email == ''){
+    if (model_send.email == ''){
         alert('Se espera e-mail')
         return false
     }
 
-    if (modelo.value.fecha_nacimiento == ''){
+    if (model_send.fecha_nacimiento == ''){
         alert('Se espera fecha de nacimiento')
         return false
     }
 
     let res_actualiza = undefined
-    res_actualiza = await actualizar_datos( modelo.value )
+    res_actualiza = await actualizar_datos( model_send )
     if (res_actualiza.stat){
         alert('Funcionalidad no Implementada')
     } else {

@@ -9,7 +9,9 @@ import { onMounted } from 'vue'
 import { IonPage, IonLoading } from '@ionic/vue';
 import { logout } from '../../api/usuario'
 import { useRouter } from 'vue-router'
+import { useAuth } from '../../helpers/authComposable'
 
+const authCompo = useAuth()
 const router = useRouter()
 
 onMounted(async ()=>{

@@ -23,6 +23,9 @@ import ListadoMascotas from '../mascota/ListadoMascotas.vue'
 import { perfil_mascota_seleccionado } from '../../store/app'
 
 import { useRouter } from 'vue-router'
+import { useAuth } from '../../helpers/authComposable'
+
+const authCompo = useAuth()
 const router = useRouter()
 
 function agregar_mascota(){

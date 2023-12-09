@@ -24,7 +24,9 @@ import { IonCol, IonPage, IonGrid, IonRow, IonImg, IonCard, IonCardContent, IonC
 import { IonAccordion, IonAccordionGroup, IonLabel } from '@ionic/vue';
 
 import { preguntas_frecuentes } from '../../api/general'
+import { useAuth } from '../../helpers/authComposable'
 
+const authCompo = useAuth()
 const listado_preguntas = ref([])
 onMounted(async ()=>{
     let res = undefined

@@ -15,4 +15,7 @@ import { ref } from 'vue'
 import { IonItem, IonList } from '@ionic/vue' 
 import { IonCol, IonPage, IonGrid, IonRow, IonImg, IonCard, IonCardContent, IonCardHeader  } from '@ionic/vue';
 
+import { useAuth } from '../../helpers/authComposable'
+
+const authCompo = useAuth()
 </script>

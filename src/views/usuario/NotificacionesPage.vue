@@ -51,9 +51,10 @@ import { mostrar_cargando, ocultar_cargando, perfil_mascota_seleccionado } from 
 import { get_notificaciones, notificacion_leida } from '../../api/usuario'
 import { get_one } from '../../api/mascotas'
 import { date2string } from '../../utils/fechas'
+import { useAuth } from '../../helpers/authComposable'
 
 const router = useRouter()
-
+const authCompo = useAuth()
 const listado_notificaciones = ref([])
 
 const perfil_obtenido = ref()

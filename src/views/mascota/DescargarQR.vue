@@ -59,7 +59,9 @@ import { cloudDownloadOutline } from 'ionicons/icons';
 import { IonCol, IonGrid, IonPage, IonRow, IonCard, IonIcon, IonCardContent, IonCardHeader, IonButton, IonButtons } from '@ionic/vue';
 
 import { perfil_mascota_seleccionado } from '../../store/app'
+import { useAuth } from '../../helpers/authComposable'
 
+const authCompo = useAuth()
 const canvas = ref()
 
 const qr_def_size = ref(0)

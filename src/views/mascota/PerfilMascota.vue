@@ -132,7 +132,9 @@ import VistaImagenes from '../../components/VistaImagenes'
 import SelectorFecha from '../../components/SelectorFecha'
 import { BtnUploadConfig } from '../../components/ElementoUIGenerico'
 import { FORMATOS_IMAGEN, MAX_IMAGE_SIZE } from '../../const'
+import { useAuth } from '../../helpers/authComposable'
 
+const authCompo = useAuth()
 const btn_subir_foto = ref(new BtnUploadConfig({ 
             class:'ml-1 mr-1',  label: 'Subir Foto', 
             _disabled: () => { return false },
